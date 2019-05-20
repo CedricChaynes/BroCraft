@@ -1,19 +1,11 @@
 class Booking < ApplicationRecord
-  belongs_to :user, class_name: "Renter",
+  belongs_to :renter, class_name: "User",
                       foreign_key: "renter_id"
   belongs_to :tool
+
+  validates :renter_id, presence: true, allow_blank: false
+  validates :tool_id, presence: true, allow_blank: false
+  validates :status, inclusion: { in: ["pending", "approved", "rejected"] }
+  validates :end_date, presence: true, date: { after_or_equal_to: :start_date }
+  validates :start_date, presence: true, date: { after_or_equal_to: Date.now }
 end
-
-
-# class User
-#   has_many :owner_tools
-# end
-# => OnwerTool model => class_name => 'Tool'
-# => user_id => foreign_key => 'ower_id'
-
-
-# class Tool
-#   belongs_to :ower
-# end
-# => Model Owner => class_name => 'User'
-# => owner_id => true (foreign_key)
