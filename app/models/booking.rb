@@ -5,16 +5,11 @@ class Booking < ApplicationRecord
 end
 
 
-
-
-
 # class User
 #   has_many :owner_tools
 # end
 # => OnwerTool model => class_name => 'Tool'
 # => user_id => foreign_key => 'ower_id'
-
-
 
 
 # class Tool

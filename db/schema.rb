@@ -15,6 +15,18 @@ ActiveRecord::Schema.define(version: 2019_05_20_153249) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "bookings", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "tool_id"
+    t.string "status"
+    t.date "start_date"
+    t.date "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tool_id"], name: "index_bookings_on_tool_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
+
   create_table "tools", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -45,5 +57,7 @@ ActiveRecord::Schema.define(version: 2019_05_20_153249) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bookings", "tools"
+  add_foreign_key "bookings", "users"
   add_foreign_key "tools", "users", column: "owner_id"
 end
