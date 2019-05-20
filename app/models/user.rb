@@ -4,7 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :tools, through: :bookings, dependent: :destroy
+  has_many :owner_tools, class_name: "Tool",
+                          foreign_key: "owner_id"
   has_many :bookings, dependent: :destroy
 
   validates :username, presence: true, allow_blank: false, uniqueness: true
