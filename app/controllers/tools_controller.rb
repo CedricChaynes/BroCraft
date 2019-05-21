@@ -1,4 +1,5 @@
 class ToolsController < ApplicationController
+  skip_before_action :authenticate_user!
   before_action :set_tool, only: %i[show edit update destroy]
 
   def index
@@ -6,6 +7,8 @@ class ToolsController < ApplicationController
   end
 
   def show
+    @user = current_user
+    @booking = Booking.new
   end
 
   def new
@@ -30,6 +33,12 @@ class ToolsController < ApplicationController
   def destroy
     @tool.destroy!
     redirect_to users_tools
+  end
+
+  def search
+  end
+
+  def filter
   end
 
   private
