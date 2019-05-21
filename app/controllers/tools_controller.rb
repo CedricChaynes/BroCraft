@@ -14,7 +14,7 @@ class ToolsController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     @tool = Tool.new(tool_params)
-    @tool.user = @user
+    @tool.owner = @user
     @tool.save!
     redirect_to users_tools
   end
