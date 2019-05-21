@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2019_05_21_142420) do
     t.datetime "updated_at", null: false
     t.bigint "owner_id"
     t.boolean "bookable", default: true
+    t.string "photo"
     t.index ["owner_id"], name: "index_tools_on_owner_id"
   end
 
@@ -53,6 +54,7 @@ ActiveRecord::Schema.define(version: 2019_05_21_142420) do
     t.string "last_name"
     t.string "mobile"
     t.string "avatar_url"
+    t.string "avatar"
     t.text "address"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

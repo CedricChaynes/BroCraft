@@ -7,6 +7,10 @@ class ToolPolicy < ApplicationPolicy
     true
   end
 
+  def new?
+    true
+  end
+
   def update?
     record.owner == user
   end
