@@ -39,8 +39,7 @@ CATEGORIES = ['outillage à main', 'outillage électroportatif',
 
 count = 1
 while count < 10
-  user = User.create!(username: "user#{count}", first_name: Faker::Name.first_name,
-         last_name: Faker::Name.last_name, email: "user#{count}@gmail.com",
+  user = User.create!(username: "user#{count}", email: "user#{count}@gmail.com",
          password: '123456', mobile: generate_French_mobile_number,
          address: Faker::Address.full_address, avatar_url: generate_image_url)
   rand(1..5).times do
@@ -48,7 +47,6 @@ while count < 10
               description: Faker::Lorem.paragraph_by_chars(256, false),
               category: CATEGORIES.sample, price_per_day: generate_price)
     tool.owner = user
-    tool.remote_photo_url = img_url_list.sample
     tool.save!
   end
   count += 1
