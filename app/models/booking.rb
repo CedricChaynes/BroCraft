@@ -7,5 +7,5 @@ class Booking < ApplicationRecord
   validates :tool_id, presence: true, allow_blank: false
   validates :status, inclusion: { in: ["pending", "approved", "rejected"] }
   validates :end_date, presence: true, date: { after_or_equal_to: :start_date }
-  validates :start_date, presence: true, date: { after_or_equal_to: Date.now }
+  validates :start_date, presence: true, date: { after_or_equal_to: Date.today }
 end
