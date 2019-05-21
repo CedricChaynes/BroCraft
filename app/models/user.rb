@@ -14,6 +14,6 @@ class User < ApplicationRecord
                     format: { with: /\A([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-]+\.)+([a-zA-Z]{2,5})\z/}
   validates :password, presence: true, allow_blank: false, length: { minimum: 6 }
   validates :mobile, allow_blank: true,
-                     format: { with: /\A((\+33(\s|-)*[1-9])|(0[1-9]))((\s|-)*\d{2}){4}\z/ }
+                     format: { with: /\A((((\+33)|(\(\+33\)))(\s|-)*[1-9])|(0[1-9]))((\s|-)*\d{2}){4}\z/ }
   validates :address, presence: true, allow_blank: false
 end
