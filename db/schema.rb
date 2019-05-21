@@ -10,21 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_20_171833) do
+ActiveRecord::Schema.define(version: 2019_05_21_103843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bookings", force: :cascade do |t|
-    t.bigint "user_id"
+    t.bigint "renter_id"
     t.bigint "tool_id"
     t.string "status", default: "pending"
     t.date "start_date"
     t.date "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["renter_id"], name: "index_bookings_on_renter_id"
     t.index ["tool_id"], name: "index_bookings_on_tool_id"
-    t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
   create_table "tools", force: :cascade do |t|
@@ -58,6 +58,6 @@ ActiveRecord::Schema.define(version: 2019_05_20_171833) do
   end
 
   add_foreign_key "bookings", "tools"
-  add_foreign_key "bookings", "users"
+  add_foreign_key "bookings", "users", column: "renter_id"
   add_foreign_key "tools", "users", column: "owner_id"
 end
