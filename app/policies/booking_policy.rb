@@ -4,24 +4,21 @@ class BookingPolicy < ApplicationPolicy
   end
 
   def show
-    (record.owner == user) || (record.renter == user)
+    owner? || renter?
   end
 
   def update?
-    true
+    owner? || renter?
   end
 
   def permitted_attributes
-    if owner?
       [:status]
-    elsif renter?
-      [:status, :start_date, :end_date]
     end
   end
 
   class Scope < Scope
     def resolve
-      scope.where(owner? || record.renter == user)
+      scope.where(owner? || renter?)
     end
   end
 
@@ -29,5 +26,9 @@ class BookingPolicy < ApplicationPolicy
 
   def owner?
     record.owner == user
+  end
+
+  def renter?
+    record.renter == user
   end
 end

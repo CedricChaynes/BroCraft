@@ -1,3 +1,4 @@
+
 class ToolsController < ApplicationController
   before_action :set_tool, only: %i[show edit update destroy]
 
