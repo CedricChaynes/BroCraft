@@ -3,6 +3,10 @@ class ToolPolicy < ApplicationPolicy
     true
   end
 
+  def owner_index
+    record.owner == user
+  end
+
   def show?
     true
   end
