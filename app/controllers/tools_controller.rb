@@ -19,6 +19,7 @@ class ToolsController < ApplicationController
 
   def new
     @tool = Tool.new
+    authorize @tool
   end
 
   def create
