@@ -22,7 +22,7 @@
     <% @tools.each do |tool| %>
       <div class="col-sm-6 col-md-4 col-lg-3 justify-content-around" style="position:relative;">
         <div class="d-flex flex-column">
-          <%= image_tag "#{tool.photo_url}", size: "247x247", style: "background-image: url(#{image_url('image-placeholder-225x225.png')})" %>
+          <%= image_tag "#{tool.photo.url}", size: "247x247", style: "background-image: url(#{image_url('image-placeholder-225x225.png')})" %>
           <div class="col-12 mb-3 text-center border border-secondary" style="background-color:#e1e1e1">
             <div class="container text-justify my-3" style="height:17em; vertical-align: middle;">
               <h4 class="text-center" style="line-height: 1.5em; height: 3em"><%= tool.name %></h4>

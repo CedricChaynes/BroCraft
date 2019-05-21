@@ -46,11 +46,10 @@ while count < 10
   rand(1..5).times do
     tool = Tool.new(name: Faker::ElectricalComponents.electromechanical,
               description: Faker::Lorem.paragraph_by_chars(256, false),
-              category: CATEGORIES.sample, price_per_day: generate_price,
-              photo_url: img_url_list.last)
+              category: CATEGORIES.sample, price_per_day: generate_price)
     tool.owner = user
+    tool.remote_photo_url = img_url_list.sample
     tool.save!
-    img_url_list.pop
   end
   count += 1
 end
@@ -65,3 +64,4 @@ end
   booking.tool = Tool.all.sample
   booking.save!
 end
+
