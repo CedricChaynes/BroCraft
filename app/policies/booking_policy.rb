@@ -13,7 +13,6 @@ class BookingPolicy < ApplicationPolicy
 
   def permitted_attributes
       [:status]
-    end
   end
 
   class Scope < Scope
