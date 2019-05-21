@@ -23,6 +23,7 @@ gem 'dotenv-rails', groups: [ :development, :test ]
 gem 'faker'
 gem 'nokogiri'
 gem 'select2_simple_form', github: 'lndl/select2_simple_form', tag: '0.7.3'
+gem 'pundit'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
