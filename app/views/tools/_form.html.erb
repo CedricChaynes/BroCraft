@@ -6,7 +6,9 @@
     <%= f.input :name %>
     <%= f.input :description %>
     <%= f.input :price_per_day %>
-    <%= f.input :category %>
+    <%= f.input :category, collection: ['outillage à main', 'outillage électroportatif',
+                'outillage spécialisé', 'protection', 'équipement de chantier',
+                "machine d'atelier"]%>
     <%= f.input :photo %>
     <%= f.input :photo_cache, as: :hidden %>
   </div>
