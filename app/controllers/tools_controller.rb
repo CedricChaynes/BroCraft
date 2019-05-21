@@ -1,14 +1,20 @@
+
 class ToolsController < ApplicationController
   skip_before_action :authenticate_user!
   before_action :set_tool, only: %i[show edit update destroy]
 
   def index
-    @tools = Tool.all
+    @tools = policy_scope(Tool).order(name: :asc)
+  end
+
+  def owner_index
+    @tools = Tool.where(owner_id: current_user.id)
   end
 
   def show
     @user = current_user
     @booking = Booking.new
+    authorize @tool
   end
 
   def new
@@ -21,6 +27,7 @@ class ToolsController < ApplicationController
     @tool.owner = @user
     @tool.save!
     redirect_to users_tools
+    authorize @tool
   end
 
   def edit
@@ -28,6 +35,7 @@ class ToolsController < ApplicationController
 
   def update
     @tool.update(tool_params)
+    authorize @tool
   end
 
   def destroy

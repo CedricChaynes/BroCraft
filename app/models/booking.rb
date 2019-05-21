@@ -2,6 +2,7 @@ class Booking < ApplicationRecord
   belongs_to :renter, class_name: "User",
                       foreign_key: "renter_id"
   belongs_to :tool
+  has_one :owner, through: :tool
 
   validates :renter_id, presence: true, allow_blank: false
   validates :tool_id, presence: true, allow_blank: false
