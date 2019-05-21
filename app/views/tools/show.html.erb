@@ -22,7 +22,8 @@
         <p><%= @tool.description %></p>
       </div>
       <div class="container border text-justify mb-3">
-        <p><strong>Number of uses: <%= @tool.bookings.count %></%></strong></p>
+        <h4>Number of uses: <%= @tool.bookings.count %></%></h4>
+        <h4><%= '%.2f' % @tool.price_per_day %> € / day</h4>
       </div>
     </div>
   </div>
