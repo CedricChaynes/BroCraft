@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_21_112020) do
+ActiveRecord::Schema.define(version: 2019_05_21_140640) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2019_05_21_112020) do
     t.datetime "updated_at", null: false
     t.bigint "owner_id"
     t.boolean "bookable", default: true
+    t.string "photo"
     t.index ["owner_id"], name: "index_tools_on_owner_id"
   end
 
@@ -54,6 +55,7 @@ ActiveRecord::Schema.define(version: 2019_05_21_112020) do
     t.string "mobile"
     t.string "avatar_url"
     t.string "address"
+    t.string "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

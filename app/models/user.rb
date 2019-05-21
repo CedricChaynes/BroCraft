@@ -16,4 +16,5 @@ class User < ApplicationRecord
   validates :mobile, allow_blank: true,
                      format: { with: /\A((((\+33)|(\(\+33\)))(\s|-)*[1-9])|(0[1-9]))((\s|-)*\d{2}){4}\z/ }
   validates :address, presence: true, allow_blank: false
+  mount_uploader :avatar, PhotoUploader
 end
