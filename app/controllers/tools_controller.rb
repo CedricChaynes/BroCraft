@@ -8,7 +8,7 @@ class ToolsController < ApplicationController
   end
 
   def owner_index
-    @tools = Tool.where(owner_id: current_user.id)
+    @tools = policy_scope(Tool).where(owner_id: current_user.id).order(name: :asc)
   end
 
   def show
