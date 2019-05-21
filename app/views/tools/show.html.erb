@@ -1,2 +1,32 @@
-<h1>Tools#show</h1>
-<p>Find me in app/views/tools/show.html.erb</p>
+<div class="container" style="margin-top:8px">
+  <%=link_to root_path do%>
+    <i class="fas fa-undo-alt" style="font-size: 24px; font-weight: bold;">
+      Back
+    </i>
+  <%end%>
+</div>
+<div class="container">
+  <div class="row text-justify">
+    <div class="col-8 border m-3 p-3" style="background-color:white">
+      <div class="d-flex">
+        <div class="container text-center">
+          <h1><%= @tool.name %></h1>
+          <img style="width: 50vh" src=<%="#{@tool.photo_url}"%>>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-3 border m-3 p-3 text-left" style="background-color:white">
+      <div class="container border text-justify mb-3">
+        <h3>Preparation</h3>
+        <p><%= @tool.description %></p>
+      </div>
+      <div class="container border text-justify mb-3">
+        <p><strong>Number of uses: <%= @tool.bookings.count %></%></strong></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

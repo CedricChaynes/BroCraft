@@ -1,8 +1,9 @@
 class BookingsController < ApplicationController
+  skip_before_action :authenticate_user!
   before_action :set_booking, only: [:show, :edit, :update]
 
   def index
-    @bookings = Booking.all
+    @bookings = policy_scope(Booking).order(start_date: :asc)
   end
 
   def show
@@ -17,19 +18,24 @@ class BookingsController < ApplicationController
     @booking.tool = Tool.find(params[:tool_id])
     @tool.save!
     redirect_to tool_path
+    authorize @booking
   end
 
   def edit
   end
 
   def update
-    @booking.update(booking_params)
+    if @booking.update_attributes(permitted_attributes(@booking))
+      redirect_to @booking
+    else
+      render :edit
+    end
   end
 
   private
 
   def booking_params
-    params.require(:booking).permit(:tool_id, :status, :start_date, :end_date)
+    params.require(:booking).permit(policy(@booking).permitted_attributes)
   end
 
   def set_booking
