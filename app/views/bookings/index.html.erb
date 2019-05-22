@@ -1,2 +1,52 @@
-<h1>Bookings#index</h1>
-<p>Find me in app/views/bookings/index.html.erb</p>
+<h1>Bookings on Tools I own</h1>
+
+<% @bookings_as_owner.each do |booking| %>
+<ul>
+    <li><%= booking.tool.name %></li>
+    <li>Booked by <%= booking.renter.username %> </li>
+    <li>From <%= booking.start_date.strftime("%d/%m/%Y") %> To <%= booking.end_date.strftime("%d/%m/%Y") %> </li>
+    <li><%= booking.status %> </li>
+    <% if booking.status == "rejected" %>
+
+    <% elsif booking.status == "approved" %>
+
+      <%= link_to "Cancel Booking", reject_booking_path(booking), method: "patch", data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
+
+    <% elsif booking.status == "pending" %>
+
+      <%= link_to "Accept Booking request", approve_booking_path(booking), method: "patch", class: "btn btn-primary" %>
+
+      <%= link_to "Refuse Booking request", reject_booking_path(booking), method: "patch", data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
+    <% end %>
+    <br>
+
+</ul>
+<% end %>
+
+
+<h1>Bookings on Tools I rent</h1>
+
+<% @bookings_as_renter.each do |booking| %>
+<ul>
+    <li><%= booking.tool.name %></li>
+    <li>Owned by <%= booking.tool.owner.username %> </li>
+    <li>From <%= booking.start_date.strftime("%d/%m/%Y") %> To <%= booking.end_date.strftime("%d/%m/%Y") %> </li>
+    <li><%= booking.status %> </li>
+    <% if booking.status == "rejected" %>
+
+    <%  else  %>
+
+      <%= link_to "Cancel Booking", reject_booking_path(booking), method: "patch", data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
+
+      <%= link_to "Change Dates", '#', class: "btn btn-primary" %>
+
+    <% end %>
+    <br>
+
+</ul>
+<% end %>
+
+
+
+
+
