@@ -12,14 +12,13 @@ class BookingPolicy < ApplicationPolicy
   end
 
   def permitted_attributes
-      [:status]
-    end
+      [:start_date, :end_date]
   end
 
-  class Scope < Scope
-    def resolve
-      scope.where(owner? || renter?)
-    end
+  #class Scope < Scope
+    #def resolve
+    #  scope.where.user(owner? || renter?)
+   # end
   end
 
   private
@@ -31,4 +30,5 @@ class BookingPolicy < ApplicationPolicy
   def renter?
     record.renter == user
   end
-end
+
+

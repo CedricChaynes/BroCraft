@@ -1,6 +1,11 @@
 class BookingsController < ApplicationController
   skip_before_action :authenticate_user!
   before_action :set_booking, only: [:show, :edit, :update]
+  before_action :skip_authorization, only: %i[search filter create new]
+
+  def contact
+    @booking = Booking.new
+  end
 
   def index
     @bookings = policy_scope(Booking).order(start_date: :asc)
@@ -10,15 +15,19 @@ class BookingsController < ApplicationController
   end
 
   def new
-    @booking = Booking.new
   end
 
   def create
+    @booking = Booking.new(booking_params)
     @booking.renter = current_user
     @booking.tool = Tool.find(params[:tool_id])
-    @tool.save!
-    redirect_to tool_path
+
+    @booking.save!
+
+    redirect_to bookings_path
     authorize @booking
+
+
   end
 
   def edit
@@ -35,7 +44,7 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(policy(@booking).permitted_attributes)
+    params.require(:booking).permit(:start_date, :end_date)
   end
 
   def set_booking

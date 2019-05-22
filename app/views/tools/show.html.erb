@@ -18,6 +18,23 @@
         <h4>Number of uses: <%= @tool.bookings.count %></%></h4>
         <h4><%= '%.2f' % @tool.price_per_day %> € / day</h4>
       </div>
+
+    <%= simple_form_for [@tool, @booking] do |f| %>
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+      <div class="form-inputs">
+        <%= f.input :start_date, as: :date, html5: true%>
+        <%= f.input :end_date, as: :date, html5: true %>
+      </div>
+
+
+      <div class="form-actions">
+        <%= f.button :submit %>
+      </div>
+    <% end %>
+
+
     </div>
   </div>
 </div>
