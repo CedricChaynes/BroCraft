@@ -15,10 +15,10 @@ class BookingPolicy < ApplicationPolicy
       [:start_date, :end_date]
   end
 
-  #class Scope < Scope
-    #def resolve
-    #  scope.where.user(owner? || renter?)
-   # end
+  class Scope < Scope
+    def resolve
+      scope.all
+    end
   end
 
   private

@@ -32,6 +32,10 @@
       <div class="form-actions">
         <%= f.button :submit %>
       </div>
+        <% if @tool.owner == @user %>
+        <%= link_to "Edit Tool Info", edit_tool_path(@tool) %>
+        <% else %>
+        <% end %>
     <% end %>
 
 

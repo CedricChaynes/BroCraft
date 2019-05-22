@@ -11,5 +11,10 @@ Rails.application.routes.draw do
       end
     end
     resources :bookings, except: [:destroy, :new]
+      member do
+       patch 'approve'
+        patch 'reject'
+      end
+  end
   resources :tools, only: [:destroy, :index, :show]
 end
