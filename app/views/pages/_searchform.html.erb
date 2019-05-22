@@ -1,24 +1,24 @@
 <%= simple_form_for :searchform, url: search_tools_path, method: "GET" do |f| %>
   <div class="form-inline">
-    <%= f.input :name, label: false, input_html: {value: "", placeholder: 'Tool name', size: 21} %>
+    <%= f.input :name, label: false, input_html: {value: "", placeholder: 'Outil', size: 21} %>
     <%= f.input :category, label: false, as: :select2, collection: Tool.pluck(:category).uniq %>
-        <script>document.querySelectorAll('#searchform_category option')[0].innerText = 'Category'</script>
+        <script>document.querySelectorAll('#searchform_category option')[0].innerText = 'Catégorie'</script>
   </div>
   <br>
-  <span style="display: block;overflow: hidden;"><%= f.input :address, label: false, input_html: {placeholder: 'Location where you want to start the search'} %></span>
+  <span style="display: block;overflow: hidden;"><%= f.input :address, label: false, input_html: {placeholder: 'Ville'} %></span>
 
   <div class="form-inline">
     <div class="d-flex justify-content-between">
       <div>
-        <%= f.input :start_date, label: 'From', as: :date, html5: true %>
+        <%= f.input :start_date, label: 'De', as: :date, html5: true %>
       </div>
       <div class="ml-3">
-        <%= f.input :end_date, label: 'To', as: :date, html5: true %>
+        <%= f.input :end_date, label: 'À', as: :date, html5: true %>
       </div>
     </div>
   </div>
   <br>
   <div class="text-center">
-    <%= f.button :submit, 'Go!', class: "btn-success w-50" %>
+    <%= f.button :submit, 'Go!', class: "btn-red" %>
   </div>
 <% end %>
