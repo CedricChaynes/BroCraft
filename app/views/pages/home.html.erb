@@ -1,15 +1,10 @@
-<div class="container d-flex">
-  <div class="container">
-    <%=link_to root_path do%>
-      <h3>Brocraft</h3>
-    <%end%>
+<br>
+<div class="container border p-3" style="width:660px">
+  <div class="text-center">
+    <h2>Search a tool</h2>
   </div>
-  <div class="container d-flex justify-content-end">
-    <%= simple_form_for :search, url: search_tools_path, method: "GET", html: { class: 'form-inline', style: 'overflow: hidden'} do |f| %>
-      <%= f.input :name, label: false, input_html: {value: "", placeholder: 'Search'} %>
-      <%= f.button :submit, 'Search', class: "btn-success" %>
-    <% end %>
-  </div>
+  <%= render 'searchform' %>
 </div>
+
 
 
