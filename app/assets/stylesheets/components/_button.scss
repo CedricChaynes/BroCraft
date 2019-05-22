@@ -1,12 +1,31 @@
 .btn-blue {
-  color: #999999;
-  border: 1px solid rgba(153,153,153,0.6);
-  padding: 12px 25px;
-  border-radius: 32px;
-  opacity: 0.6;
-  transition: opacity .3s;
+  text-decoration: none;
+  background-color: #083358;
+  color: #f6f6f6;
+  border: 1px solid rgba(8, 51, 88, 1);
+  padding: 12px 32px;
+  border-radius: 16px;
+  transition: all .3s;
 }
 
 .btn-blue:hover {
-  opacity: 1;
+  text-decoration: none;
+  color: #f6f6f6;
+  background-color: #0f4471;
+}
+
+.btn-red {
+  text-decoration: none;
+  background-color: #fc3c3c;
+  color: #f6f6f6;
+  border: 1px solid rgba(252, 60, 60, 1);
+  padding: 12px 32px;
+  border-radius: 16px;
+  transition: all .3s;
+}
+
+.btn-red:hover {
+  text-decoration: none;
+  color: #f6f6f6;
+  background-color: rgba(252, 60, 60, 0.6);
 }
