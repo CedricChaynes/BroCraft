@@ -1,6 +1,4 @@
-<h1>Users#my_profil</h1>
-
-
+<h1>Mon profil</h1>
 
 <%= simple_form_for(current_user) do |f| %>
   <%= f.error_notification %>
@@ -14,17 +12,14 @@
                 input_html: { autocomplete: "Mobile Phone" }%>
     <%= f.input :address,
                 required: true,
-                autofocus: true,
                 input_html: { autocomplete: "Address" }%>
-
-
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "update" %>
+    <%= f.button :submit, "Update" %>
   </div>
 <% end %>
 
-
-
 <%= link_to "modifier mot de passe", edit_user_registration_path %>
+</br>
+<%= link_to "Retour", :back %>
