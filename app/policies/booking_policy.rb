@@ -11,9 +11,18 @@ class BookingPolicy < ApplicationPolicy
     owner? || renter?
   end
 
-  def permitted_attributes
-      [:start_date, :end_date]
+  def approve?
+    owner? || renter?
   end
+
+  def reject?
+    owner? || renter?
+  end
+
+  def permitted_attributes
+      [:start_date, :end_date, :status]
+  end
+end
 
   class Scope < Scope
     def resolve

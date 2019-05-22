@@ -15,9 +15,9 @@
         <p><%= @tool.description %></p>
       </div>
       <div class="container border text-justify mb-3">
-        <h4>Number of uses: <%= @tool.bookings.count %></%></h4>
         <h4><%= '%.2f' % @tool.price_per_day %> € / day</h4>
       </div>
+
 
     <%= simple_form_for [@tool, @booking] do |f| %>
       <%= f.error_notification %>
@@ -32,11 +32,15 @@
       <div class="form-actions">
         <%= f.button :submit %>
       </div>
+         <% end %>
+
         <% if @tool.owner == @user %>
         <%= link_to "Edit Tool Info", edit_tool_path(@tool) %>
         <% else %>
         <% end %>
-    <% end %>
+
+
+
 
 
     </div>

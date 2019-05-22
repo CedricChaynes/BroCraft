@@ -12,4 +12,17 @@ class Tool < ApplicationRecord
   validates :price_per_day, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :category, presence: true, inclusion: { in: CATEGORIES }
   mount_uploader :photo, PhotoUploader
+
+  def self.search(params)
+    if params[:name].present? && params[:name].present?
+      where('name ILIKE ?', "%#{params[:name]}%")
+        .where('category ILIKE ?', "%#{params[:category]}%")
+    elsif params[:name].present?
+      where('name ILIKE ?', "%#{params[:name]}%")
+    elsif params[:category].present?
+      where('category ILIKE ?', "%#{params[:category]}%")
+    else
+      all
+    end
+  end
 end

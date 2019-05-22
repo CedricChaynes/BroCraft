@@ -6,9 +6,10 @@ class BookingsController < ApplicationController
   def contact
     @booking = Booking.new
   end
-
+  
   def index
-    @bookings = policy_scope(Booking).order(start_date: :asc)
+    @bookings_as_owner = current_user.owned_bookings
+    @bookings_as_renter = policy_scope(Booking).where(renter_id: current_user.id).order(status: :asc)
   end
 
   def show
@@ -30,24 +31,32 @@ class BookingsController < ApplicationController
 
   end
 
-  def edit
+  def approve
+    @booking.status = "approved"
+    @booking.save!
+    redirect_back(fallback_location: bookings_path)
+  end
+
+  def reject
+    @booking.status = "rejected"
+    @booking.save!
+    redirect_back(fallback_location: bookings_path)
   end
 
   def update
-    if @booking.update_attributes(permitted_attributes(@booking))
-      redirect_to @booking
-    else
-      render :edit
-    end
+    @booking.update(booking_params)
+    redirect_to @booking
   end
 
   private
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_date)
+
+    params.require(:booking).permit(:start_date, :end_date, :id, :status)
   end
 
   def set_booking
     @booking = Booking.find(params[:id])
+    authorize @booking
   end
 end
