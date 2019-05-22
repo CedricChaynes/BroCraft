@@ -29,10 +29,10 @@
         </li>
       <% else %>
         <li class="nav-item">
-          <h5>Become a HandyBro renter</h5>
-          <span class="nav-connexion justify-content-end">
-          <%= link_to "Se connecter", new_user_session_path, class: "btn btn-success" %>
-          <%= link_to "S'inscrire", new_user_session_path, class: "btn btn-warning" %>
+          <p class="accroche">Become a HandyBro renter</p>
+          <span class="nav-connexion">
+          <%= link_to "Se connecter", new_user_session_path, class: 'btn-bc-light btn-inscr' %>
+          <%= link_to "S'inscrire", new_user_registration_path, class: 'btn-bc-light btn-inscr' %>
           </span>
         </li>
       <% end %>
