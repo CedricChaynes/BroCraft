@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   skip_before_action :authenticate_user!
-  before_action :set_booking, only: [:show, :edit, :update]
+  before_action :set_booking, only: [:show, :approve, :reject, :edit, :update]
   before_action :skip_authorization, only: %i[search filter create new]
 
   def contact
