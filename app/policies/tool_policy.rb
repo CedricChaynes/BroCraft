@@ -7,6 +7,14 @@ class ToolPolicy < ApplicationPolicy
     record.owner == user
   end
 
+  def search?
+    true
+  end
+
+  def filter?
+    true
+  end
+
   def show?
     true
   end
