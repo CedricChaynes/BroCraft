@@ -32,10 +32,12 @@ class ToolsController < ApplicationController
   end
 
   def edit
+    authorize @tool
   end
 
   def update
     @tool.update(tool_params)
+    redirect_to tool_path(@tool)
     authorize @tool
   end
 
@@ -45,9 +47,11 @@ class ToolsController < ApplicationController
   end
 
   def search
-    @search = params[:search]
+    @search = params[:searchform]
     @name = @search[:name]
-    @tools = Tool.where('name ILIKE ?', "%#{@name}%")
+    @category = @search[:category]
+    search_params = { name: @name, category: @category }
+    @tools = Tool.search(search_params)
   end
 
   def filter

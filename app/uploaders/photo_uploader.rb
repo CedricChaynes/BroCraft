@@ -14,6 +14,10 @@ class PhotoUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
+  def default_url
+    "https://res.cloudinary.com/dl8rau6sl/image/upload/v1558533108/default_ml5awm.png"
+  end
+
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
   #   # For Rails 3.1+ asset pipeline compatibility:
