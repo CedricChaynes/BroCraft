@@ -21,7 +21,37 @@
   display: flex;
 }
 
-.btn-primary {
+.btn-light {
   width: 150px;
   margin: 0 10px;
+}
+
+.btn-light:hover {
+  background-color: #fc3c3c;
+}
+
+.navbar {
+  background-color: #083358;
+  color: #f6f6f6;
+  border-bottom: 2px solid #fc3c3c;
+  padding-top: 0px;
+  padding-bottom: 5px;
+  position: fixed;
+  width: 100%;
+  z-index: 1070;
+}
+
+.accroche {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 1px;
+  margin-top: 0px;
+}
+
+body {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.container{
+  margin-top: 98px;
 }
