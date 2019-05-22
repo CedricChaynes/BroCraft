@@ -1,12 +1,11 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <%= link_to "#", class: "navbar-brand" do %>
+  <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag "logo_BroCraft.png" %>
     <% end %>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
@@ -32,8 +31,8 @@
         <li class="nav-item">
           <p class="accroche">Become a HandyBro renter</p>
           <span class="nav-connexion">
-          <button type="button" class="btn btn-light"><%= link_to "Se connecter", new_user_session_path, class: "nav-link" %></button>
-          <button type="button" class="btn btn-light"><%= link_to "S'inscrire", new_user_session_path, class: "nav-link" %></button>
+          <%= link_to "Se connecter", new_user_session_path, class: 'btn-bc-light btn-inscr' %>
+          <%= link_to "S'inscrire", new_user_registration_path, class: 'btn-bc-light btn-inscr' %>
           </span>
         </li>
       <% end %>
