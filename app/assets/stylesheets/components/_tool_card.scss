@@ -1,0 +1,53 @@
+.tool_card {
+  overflow: hidden;
+  height: 120px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tool_card:hover {
+   h1 {
+    color:#fc3c3c;
+  }
+}
+
+.tool_card img {
+  height: 100%;
+  width: 120px;
+  object-fit: cover;
+}
+
+.tool_card h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+  transition: all .3s;
+}
+
+.tool_card h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  color: #fc3c3c;
+}
+
+.tool_card p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.tool_card .tool_card_infos {
+  padding: 8px;
+}
+
+.tool_card .tool_card_action {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
