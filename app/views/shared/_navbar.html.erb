@@ -10,13 +10,10 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
-        <% unless current_page?(root_path) %>
-        <li class="nav-item active">
-          <%= link_to "Back to Home", root_path, class: "nav-link" %>
-        </li>
-        <% end %>
         <li class="nav-item">
-          <%= link_to "Add a Tool", new_tool_path, class: "nav-link" %>
+          <%= link_to new_tool_path, class: "nav-link" do%>
+            <button class="btn btn-success">Add a Tool</button>
+          <% end %>
         </li>
         <li class="nav-item dropdown">
           <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>

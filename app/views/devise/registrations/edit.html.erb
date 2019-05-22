@@ -1,6 +1,7 @@
-<h1>Change your password</h1>
+<h1 class="text-center p-3">Change your password</h1>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+<div class="container border p-3" style="width: 400px">
   <%= f.error_notification %>
   <div class="form-inputs">
 
@@ -9,7 +10,7 @@
                 required: false,
                 input_html: { autocomplete: "new-password" } %>
     <%= f.input :password_confirmation,
-                hint: "laissez vide si vous ne voulez pas changer",
+                hint: "Laissez vide si vous ne voulez pas changer",
                 required: false,
                 input_html: { autocomplete: "new-password" } %>
 
@@ -23,9 +24,11 @@
                 input_html: { autocomplete: "current-password" } %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
+  <div class="form-actions text-right">
+    <%= f.button :submit, "Update", class: "btn-primary" %>
+  </div>
+  <div>
+    <%= link_to "Retour", :back %>
   </div>
 <% end %>
-
-<%= link_to "Retour", :back %>
+</div>

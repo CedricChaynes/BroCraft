@@ -1,0 +1,31 @@
+<div class="container p-3 text-center">
+  <table>
+    <thead>
+      <th class="tool-name">Tool name</th>
+      <th class="tool-owner">Owned by</th>
+      <th class="tool-from">From</th>
+      <th class="tool-to">To</th>
+      <th class="tool-status">Status</th>
+      <th class="tool-actions">Actions</th>
+    </thead>
+    <tbody>
+    <% @bookings_as_renter.each do |booking| %>
+      <tr>
+        <td class="tool-name"><%= booking.tool.name %></td>
+        <td class="tool-owner"><%= booking.tool.owner.username %></td>
+        <td class="tool-from"><%= booking.start_date.strftime("%d/%m/%Y") %></td>
+        <td class="tool-to"><%= booking.end_date.strftime("%d/%m/%Y") %></td>
+        <td class="tool-status"><%= booking.status %></td>
+        <td class="tool-actions">
+          <div class="d-flex">
+            <% unless booking.status == "rejected" %>
+          <%= link_to "Edit Dates", '#', class: "btn btn-primary w-100" %>
+          <%= link_to "Cancel", reject_booking_path(booking), method: "patch", data: { confirm: 'Are you sure?' }, class: "btn btn-warning w-100" %>
+          <% end %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

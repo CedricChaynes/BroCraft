@@ -1,0 +1,30 @@
+<div class="container p-3 text-center">
+  <table>
+    <thead>
+      <th class="tool-name">Tool name</th>
+      <th class="tool-from">From</th>
+      <th class="tool-to">To</th>
+      <th class="tool-status">Status</th>
+      <th class="tool-actions">Actions</th>
+    </thead>
+    <tbody>
+    <% @bookings_as_owner.each do |booking| %>
+      <tr>
+        <td class="tool-name"><%= booking.tool.name %></td>
+        <td class="tool-from"><%= booking.start_date.strftime("%d/%m/%Y") %></td>
+        <td class="tool-to"><%= booking.end_date.strftime("%d/%m/%Y") %></td>
+        <td class="tool-status"><%= booking.status %></td>
+        <td class="tool-actions">
+          <% if booking.status == "rejected" %>
+          <% elsif booking.status == "approved" %>
+            <%= link_to "Cancel Booking", reject_booking_path(booking), method: "patch", data: { confirm: 'Are you sure?' }, class: "btn btn-warning w-100" %>
+          <% elsif booking.status == "pending" %>
+            <%= link_to "Accept Booking request", approve_booking_path(booking), method: "patch", class: "btn btn-success w-100" %>
+            <%= link_to "Refuse Booking request", reject_booking_path(booking), method: "patch", data: { confirm: 'Are you sure?' }, class: "btn btn-primary w-100" %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

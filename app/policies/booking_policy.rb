@@ -1,4 +1,9 @@
 class BookingPolicy < ApplicationPolicy
+  class Scope < Scope
+    def resolve
+      scope.all
+    end
+  end
   def create?
     record.owner != user
   end
@@ -20,24 +25,18 @@ class BookingPolicy < ApplicationPolicy
   end
 
   def permitted_attributes
-      [:start_date, :end_date, :status]
+    %i[start_date end_date status]
   end
 end
 
-  class Scope < Scope
-    def resolve
-      scope.all
-    end
-  end
-
-  private
-
-  def owner?
-    record.owner == user
-  end
-
-  def renter?
-    record.renter == user
-  end
 
 
+private
+
+def owner?
+  record.owner == user
+end
+
+def renter?
+  record.renter == user
+end

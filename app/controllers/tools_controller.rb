@@ -1,4 +1,3 @@
-
 class ToolsController < ApplicationController
   skip_before_action :authenticate_user!
   before_action :set_tool, only: %i[show edit update destroy]
@@ -17,7 +16,6 @@ class ToolsController < ApplicationController
     @booking = Booking.new
     @tool = Tool.find(params[:id])
     authorize @tool
-
   end
 
   def new

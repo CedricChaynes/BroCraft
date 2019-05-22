@@ -1,17 +1,17 @@
-<br>
-<div class="container border p-3" style="width:660px">
+<div class="container border p-3" style="width:500px">
   <div class="text-center">
     <h2>Search a tool</h2>
   </div>
   <%= render partial: 'pages/searchform' %>
 </div>
 
-<hr>
 <div class="container">
   <% if @search.present? %>
   <p>Vous avez cherché l'outil <strong><%= @name %></strong>. Nous en avons trouvé <%= @tools.size %> parmi les <%= Tool.count %> disponible sur le site:</p>
   <% end %>
+</div>
 
+<div class="container">
   <div class="cards-grid">
     <% @tools.each do |tool| %>
     <div class="tool_card">
@@ -30,6 +30,8 @@
       <div class="tool_card_action">
         <%= link_to "Plus d'infos", tool_path(tool), class: "btn-red" %>
       </div>
+    </div>
+      <% end %>
   </div>
-    <% end %>
 </div>
+

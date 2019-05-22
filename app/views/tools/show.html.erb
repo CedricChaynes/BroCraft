@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row text-justify">
-    <div class="col-8 border m-3 p-3" style="background-color:white">
+    <div class="col-5 border m-3 p-3" style="background-color:white">
       <div class="d-flex">
         <div class="container text-center">
           <h1><%= @tool.name %></h1>
@@ -9,28 +9,24 @@
       </div>
     </div>
 
-    <div class="col-3 border m-3 p-3 text-left" style="background-color:white">
-      <div class="container border text-justify mb-3">
-        <h3>Preparation</h3>
+    <div class="col-6 border m-3 p-3 text-left" style="background-color:white">
+      <div class="container border text-justify mb-3 p-3">
+        <h3>Description</h3>
         <p><%= @tool.description %></p>
       </div>
-      <div class="container border text-justify mb-3">
+      <div class="container text-justify mb-3">
         <h4><%= '%.2f' % @tool.price_per_day %> € / day</h4>
       </div>
 
-
     <%= simple_form_for [@tool, @booking] do |f| %>
       <%= f.error_notification %>
-      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
       <div class="form-inputs">
         <%= f.input :start_date, as: :date, html5: true%>
         <%= f.input :end_date, as: :date, html5: true %>
       </div>
 
-
       <div class="form-actions">
-        <%= f.button :submit %>
+        <%= f.button :submit, 'Book' ,class: 'btn-primary' %>
       </div>
          <% end %>
 
