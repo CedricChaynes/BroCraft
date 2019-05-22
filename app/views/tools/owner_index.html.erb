@@ -4,13 +4,16 @@
     <% @tools.each do |tool| %>
       <div class="col-sm-6 col-md-4 col-lg-3 justify-content-around" style="position:relative;">
         <div class="d-flex flex-column">
-          <div class="col-12 mb-3 text-center border border-secondary" style="background-image: url(<%= cl_image_path tool.photo  %>)">
+          <div class="col-12 mb-3 text-center border border-secondary" style="background-image: url( <%= cl_image_path(tool.photo.url) %>)">
             <div class="container text-justify my-3" style="height:15em; vertical-align: middle;">
               <h4 class="text-center" style="line-height: 1.5em; height: 3em"><%= tool.name %></h4>
               <p style="max-width: 55ch; line-height: 1.5em; height: 6em; word-wrap: break-word; overflow:hidden"><%= tool.description %></p>
             </div>
-            <div class="container mt-3" style="position:absolute; bottom: 16px; right: 3px">
+            <div class="container mt-3">
               <%= link_to "More info", tool_path(tool), class: "btn btn-primary" %>
+            </div>
+            <div class="container mt-3">
+              <%= link_to "Edit Tool", edit_tool_path(tool), class: "btn btn-primary" %>
             </div>
           </div>
         </div>
