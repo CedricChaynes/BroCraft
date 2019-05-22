@@ -32,10 +32,12 @@ class ToolsController < ApplicationController
   end
 
   def edit
+    authorize @tool
   end
 
   def update
     @tool.update(tool_params)
+    redirect_to tool_path(@tool)
     authorize @tool
   end
 
