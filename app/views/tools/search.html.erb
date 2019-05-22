@@ -9,28 +9,27 @@
 <hr>
 <div class="container">
   <% if @search.present? %>
-  <p>You searched for <strong><%= @name %></strong> . We found <%= @tools.size %> tools out of our <%= Tool.count %> on our website.</p>
+  <p>Vous avez cherché l'outil <strong><%= @name %></strong>. Nous en avons trouvé <%= @tools.size %> parmi les <%= Tool.count %> disponible sur le site:</p>
   <% end %>
-  <div class="container">
-    <div class="row">
+
+  <div class="cards-grid">
     <% @tools.each do |tool| %>
-      <div class="col-sm-6 col-md-4 col-lg-3 justify-content-around" style="position:relative;">
-        <div class="d-flex flex-column">
-          <%= image_tag "#{tool.photo.url}", size: "247x247", style: "background-image: url(#{image_url('image-placeholder-225x225.png')})" %>
-          <div class="col-12 mb-3 text-center border border-secondary" style="background-color:#e1e1e1">
-            <div class="container text-justify my-3" style="height:20em; vertical-align: middle;">
-              <h4 class="text-center" style="line-height: 1.5em; height: 3em"><%= tool.name %></h4>
-              <h5><strong><%= tool.category %></strong></h5>
-              <p style="max-width: 55ch; line-height: 1.5em; height: 6em; word-wrap: break-word; overflow:hidden"><%= tool.description %></p>
-              <h5 class="text-center"><%= '%.2f' % tool.price_per_day %> € / day </h5>
-            </div>
-            <div class="container mt-3" style="position:absolute; bottom: 16px; right: 3px">
-              <%= link_to "More info", tool_path(tool), class: "btn btn-primary" %>
-            </div>
-          </div>
-        </div>
+    <div class="tool_card">
+      <%= cl_image_tag(tool.photo.url) %>
+      <div class="tool_card_infos">
+        <h1><%= tool.name %></h1>
+        <p><%= tool.category %></p>
       </div>
-    <% end %>
-    </div>
+      <div class="tool_card_infos">
+        <p><%= tool.owner.address %></p>
+      </div>
+      <div class="tool_card_infos">
+        <h2><%= tool.price_per_day %>€</h2>
+        <p>par jour</p>
+      </div>
+      <div class="tool_card_action">
+        <%= link_to "Plus d'infos", tool_path(tool), class: "btn-red" %>
+      </div>
   </div>
+    <% end %>
 </div>
