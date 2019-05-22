@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :owner_tools, class_name: "Tool", foreign_key: "owner_id"
   has_many :bookings, dependent: :destroy
 
+  has_many :owned_bookings, through: :owner_tools, source: :bookings
+
   validates :username, presence: true, allow_blank: false, uniqueness: true
   validates :email, presence: true, allow_blank: false, uniqueness: true,
                     format: { with: /\A([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-]+\.)+([a-zA-Z]{2,5})\z/}

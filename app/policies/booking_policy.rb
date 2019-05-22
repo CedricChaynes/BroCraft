@@ -11,13 +11,22 @@ class BookingPolicy < ApplicationPolicy
     owner? || renter?
   end
 
+  def approve?
+    owner? || renter?
+  end
+
+  def reject?
+    owner? || renter?
+  end
+
   def permitted_attributes
-      [:status]
+    [:status]
   end
 
   class Scope < Scope
     def resolve
-      scope.where(owner? || renter?)
+      # scope.where(owner? || renter?)
+      scope.all
     end
   end
 

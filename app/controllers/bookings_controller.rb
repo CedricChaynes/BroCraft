@@ -1,9 +1,10 @@
 class BookingsController < ApplicationController
   skip_before_action :authenticate_user!
-  before_action :set_booking, only: [:show, :edit, :update]
+  before_action :set_booking, only: [:show, :approve, :reject, :edit, :update]
 
   def index
-    @bookings = policy_scope(Booking).order(start_date: :asc)
+    @bookings_as_owner = current_user.owned_bookings
+    @bookings_as_renter = policy_scope(Booking).where(renter_id: current_user.id).order(status: :asc)
   end
 
   def show
@@ -21,24 +22,31 @@ class BookingsController < ApplicationController
     authorize @booking
   end
 
-  def edit
+  def approve
+    @booking.status = "approved"
+    @booking.save!
+    redirect_back(fallback_location: bookings_path)
+  end
+
+  def reject
+    @booking.status = "rejected"
+    @booking.save!
+    redirect_back(fallback_location: bookings_path)
   end
 
   def update
-    if @booking.update_attributes(permitted_attributes(@booking))
-      redirect_to @booking
-    else
-      render :edit
-    end
+    @booking.update(booking_params)
+    redirect_to @booking
   end
 
   private
 
   def booking_params
-    params.require(:booking).permit(policy(@booking).permitted_attributes)
+    params.require(:booking).permit(:id, :status)
   end
 
   def set_booking
     @booking = Booking.find(params[:id])
+    authorize @booking
   end
 end
