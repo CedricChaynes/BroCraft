@@ -7,7 +7,6 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
@@ -30,10 +29,10 @@
         </li>
       <% else %>
         <li class="nav-item">
-          <p>Become a HandyBro renter</p>
-          <span class="nav-connexion">
-          <button type="button" class="btn btn-primary"><%= link_to "Se connecter", new_user_session_path, class: "nav-link" %></button>
-          <button type="button" class="btn btn-primary"><%= link_to "S'inscrire", new_user_session_path, class: "nav-link" %></button>
+          <h5>Become a HandyBro renter</h5>
+          <span class="nav-connexion justify-content-end">
+          <%= link_to "Se connecter", new_user_session_path, class: "btn btn-success" %>
+          <%= link_to "S'inscrire", new_user_session_path, class: "btn btn-warning" %>
           </span>
         </li>
       <% end %>
