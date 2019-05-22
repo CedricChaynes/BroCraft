@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :tools, except: [:destroy, :show] do
       collection do
-        get 'search'
-        get 'filter'
+        get 'search', to: "tools#search"
+        get 'filter', to: "tools#filter"
         get 'my_tools', to: "tools#owner_index"
       end
     end

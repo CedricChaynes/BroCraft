@@ -1,0 +1,24 @@
+<%= simple_form_for :searchform, url: search_tools_path, method: "GET" do |f| %>
+  <div class="form-inline">
+    <%= f.input :name, label: false, input_html: {value: "", placeholder: 'Tool name', size: 39} %>
+    <%= f.input :category, label: false, as: :select2, collection: Tool.pluck(:category).uniq %>
+        <script>document.querySelectorAll('#searchform_category option')[0].innerText = 'Category'</script>
+  </div>
+  <br>
+  <span style="display: block;overflow: hidden;"><%= f.input :address, label: false, input_html: {placeholder: 'Location where you want to start the search'} %></span>
+
+  <div class="form-inline">
+    <div class="d-flex justify-content-between">
+      <div>
+        <%= f.input :start_date, label: 'From', as: :date %>
+      </div>
+      <div class="ml-3">
+        <%= f.input :end_date, label: 'To', as: :date %>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="text-center">
+    <%= f.button :submit, 'Go!', class: "btn-success w-50" %>
+  </div>
+<% end %>
