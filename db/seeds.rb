@@ -3,6 +3,7 @@ require 'json'
 require 'nokogiri'
 require 'faker'
 
+=begin
 queries = %w[hand-tools automotive-tools home-and-garden air-tools power-tools metal-working-tools]
 baseurl = 'https://www.toolplanet.com/category/'
 img_url_list = []
@@ -15,7 +16,7 @@ queries.each do |query|
   end
 end
 100.times { img_url_list.shuffle! }
-
+=end
 def generate_French_mobile_number
   "#{%w[+33 (+33) 0].sample}#{rand(6..7)}#{rand.to_s[2..9]}"
 end
@@ -39,18 +40,15 @@ CATEGORIES = ['outillage à main', 'outillage électroportatif',
 
 count = 1
 while count < 10
-  user = User.create!(username: "user#{count}", first_name: Faker::Name.first_name,
-         last_name: Faker::Name.last_name, email: "user#{count}@gmail.com",
+  user = User.create!(username: "user#{count}", email: "user#{count}@gmail.com",
          password: '123456', mobile: generate_French_mobile_number,
          address: Faker::Address.full_address, avatar_url: generate_image_url)
   rand(1..5).times do
     tool = Tool.new(name: Faker::ElectricalComponents.electromechanical,
               description: Faker::Lorem.paragraph_by_chars(256, false),
-              category: CATEGORIES.sample, price_per_day: generate_price,
-              photo_url: img_url_list.last)
+              category: CATEGORIES.sample, price_per_day: generate_price)
     tool.owner = user
     tool.save!
-    img_url_list.pop
   end
   count += 1
 end
@@ -65,3 +63,4 @@ end
   booking.tool = Tool.all.sample
   booking.save!
 end
+

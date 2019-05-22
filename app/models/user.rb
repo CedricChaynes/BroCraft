@@ -8,13 +8,10 @@ class User < ApplicationRecord
   has_many :bookings, dependent: :destroy
 
   validates :username, presence: true, allow_blank: false, uniqueness: true
-  validates :first_name, presence: true, allow_blank: false
-  validates :last_name, presence: true, allow_blank: false
   validates :email, presence: true, allow_blank: false, uniqueness: true,
                     format: { with: /\A([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-]+\.)+([a-zA-Z]{2,5})\z/}
- # validates :password, presence: true, allow_blank: false, #length: { minimum: 6 }
-  validates :mobile, allow_blank: true,
-                     format: { with: /\A((((\+33)|(\(\+33\)))(\s|-)*[1-9])|(0[1-9]))((\s|-)*\d{2}){4}\z/ }
+  validates :password, presence: true, allow_blank: false, length: { minimum: 6 }
+  validates :mobile, format: { with: /\A((((\+33)|(\(\+33\)))(\s|-)*[1-9])|(0[1-9]))((\s|-)*\d{2}){4}\z/ }
   validates :address, presence: true, allow_blank: false
   mount_uploader :avatar, PhotoUploader
 end
