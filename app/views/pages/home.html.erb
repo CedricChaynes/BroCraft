@@ -5,38 +5,11 @@
     <%end%>
   </div>
   <div class="container d-flex justify-content-end">
-    <%= simple_form_for :search, url: root_path, method: "GET", html: { class: 'form-inline', style: 'overflow: hidden'} do |f| %>
+    <%= simple_form_for :search, url: search_tools_path, method: "GET", html: { class: 'form-inline', style: 'overflow: hidden'} do |f| %>
       <%= f.input :name, label: false, input_html: {value: "", placeholder: 'Search'} %>
       <%= f.button :submit, 'Search', class: "btn-success" %>
     <% end %>
   </div>
 </div>
 
-<hr>
-<div class="container">
-  <% if @search.present? %>
-  <p>You searched for <strong><%= @name %></strong> . We found <%= @tools.size %> tools out of our <%= Tool.count %> on our website.</p>
-  <% end %>
-  <div class="container">
-    <div class="row">
-    <% @tools.each do |tool| %>
-      <div class="col-sm-6 col-md-4 col-lg-3 justify-content-around" style="position:relative;">
-        <div class="d-flex flex-column">
-          <%= image_tag "#{tool.photo.url}", size: "247x247", style: "background-image: url(#{image_url('image-placeholder-225x225.png')})" %>
-          <div class="col-12 mb-3 text-center border border-secondary" style="background-color:#e1e1e1">
-            <div class="container text-justify my-3" style="height:17em; vertical-align: middle;">
-              <h4 class="text-center" style="line-height: 1.5em; height: 3em"><%= tool.name %></h4>
-              <p style="max-width: 55ch; line-height: 1.5em; height: 6em; word-wrap: break-word; overflow:hidden"><%= tool.description %></p>
-              <h5 class="text-center"><%= '%.2f' % tool.price_per_day %> € / day </h5>
-            </div>
-            <div class="container mt-3" style="position:absolute; bottom: 16px; right: 3px">
-              <%= link_to "More info", tool_path(tool), class: "btn btn-primary" %>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
-    </div>
-  </div>
-</div>
 

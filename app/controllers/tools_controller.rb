@@ -2,6 +2,7 @@
 class ToolsController < ApplicationController
   skip_before_action :authenticate_user!
   before_action :set_tool, only: %i[show edit update destroy]
+  before_action :skip_authorization, only: %i[search filter]
 
   def index
     @tools = policy_scope(Tool).order(name: :asc)
@@ -44,6 +45,9 @@ class ToolsController < ApplicationController
   end
 
   def search
+    @search = params[:search]
+    @name = @search[:name]
+    @tools = Tool.where('name ILIKE ?', "%#{@name}%")
   end
 
   def filter

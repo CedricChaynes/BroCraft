@@ -3,6 +3,7 @@ require 'json'
 require 'nokogiri'
 require 'faker'
 
+=begin
 queries = %w[hand-tools automotive-tools home-and-garden air-tools power-tools metal-working-tools]
 baseurl = 'https://www.toolplanet.com/category/'
 img_url_list = []
@@ -15,7 +16,7 @@ queries.each do |query|
   end
 end
 100.times { img_url_list.shuffle! }
-
+=end
 def generate_French_mobile_number
   "#{%w[+33 (+33) 0].sample}#{rand(6..7)}#{rand.to_s[2..9]}"
 end
