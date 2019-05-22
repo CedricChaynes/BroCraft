@@ -1,50 +1,35 @@
-<h1>Bookings on Tools I own</h1>
+<div class="col-12">
+  <h1 class="text-center">My bookings</h1>
 
-<% @bookings_as_owner.each do |booking| %>
-<ul>
-    <li><%= booking.tool.name %></li>
-    <li>Booked by <%= booking.renter.username %> </li>
-    <li>From <%= booking.start_date.strftime("%d/%m/%Y") %> To <%= booking.end_date.strftime("%d/%m/%Y") %> </li>
-    <li><%= booking.status %> </li>
-    <% if booking.status == "rejected" %>
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a href="#from-me" class="nav-link active" role="tab" data-toggle="tab">From me</a>
+    </li>
+    <li class="nav-item">
+      <a href="#from-others" class="nav-link" role="tab" data-toggle="tab">From others</a>
+    </li>
+  </ul>
 
-    <% elsif booking.status == "approved" %>
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane fade in show active" id="from-me">
+      <div class="container">
+        <%= render 'from_me' %>
+      </div>
+    </div>
 
-      <%= link_to "Cancel Booking", reject_booking_path(booking), method: "patch", data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
+    <div role="tabpanel" class="tab-pane fade" id="from-others">
+      <div class="container">
+        <%= render 'from_others' %>
+      </div>
+    </div>
+  </div>
 
-    <% elsif booking.status == "pending" %>
-
-      <%= link_to "Accept Booking request", approve_booking_path(booking), method: "patch", class: "btn btn-primary" %>
-
-      <%= link_to "Refuse Booking request", reject_booking_path(booking), method: "patch", data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
-    <% end %>
-    <br>
-
-</ul>
-<% end %>
+</div>
 
 
-<h1>Bookings on Tools I rent</h1>
 
-<% @bookings_as_renter.each do |booking| %>
-<ul>
-    <li><%= booking.tool.name %></li>
-    <li>Owned by <%= booking.tool.owner.username %> </li>
-    <li>From <%= booking.start_date.strftime("%d/%m/%Y") %> To <%= booking.end_date.strftime("%d/%m/%Y") %> </li>
-    <li><%= booking.status %> </li>
-    <% if booking.status == "rejected" %>
 
-    <%  else  %>
 
-      <%= link_to "Cancel Booking", reject_booking_path(booking), method: "patch", data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
-
-      <%= link_to "Change Dates", '#', class: "btn btn-primary" %>
-
-    <% end %>
-    <br>
-
-</ul>
-<% end %>
 
 
 

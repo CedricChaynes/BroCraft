@@ -1,0 +1,31 @@
+table {
+  border: 1px solid black;
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 16px;
+  thead {
+    border: 1px solid black;
+    th {
+      height: 3em;
+    }
+  }
+  tr {
+    border: 1px solid black;
+  }
+}
+
+.tool-name {
+  width: 300px
+}
+
+.tool-from, .tool-to {
+  width: 120px
+}
+
+.tool-status, .tool-owner {
+  width: 120px
+}
+
+.tool-actions {
+  width: 240px
+}

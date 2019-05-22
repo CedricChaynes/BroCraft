@@ -1,8 +1,8 @@
-<h2>Change your password</h2>
+<h2 class="text-center p-3">Change your password</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+<div class="container border p-3" style="width: 400px">
   <%= f.error_notification %>
-
   <%= f.input :reset_password_token, as: :hidden %>
   <%= f.full_error :reset_password_token %>
 
@@ -20,5 +20,8 @@
     <%= f.button :submit, "Change my password" %>
   </div>
 <% end %>
+  <div>
+    <%= render "devise/shared/links" %>
+  </div>
+</div>
 
-<%= render "devise/shared/links" %>
