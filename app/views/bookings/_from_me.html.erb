@@ -10,7 +10,7 @@
     </thead>
     <tbody>
     <% @bookings_as_renter.each do |booking| %>
-      <tr>
+      <tr class="reserv_card">
         <td class="tool-name"><%= link_to "#{booking.tool.name}", tool_path(booking.tool) %></td>
         <td class="tool-owner"><%= booking.tool.owner.username %></td>
         <td class="tool-from"><%= booking.start_date.strftime("%d/%m/%Y") %></td>
@@ -23,8 +23,8 @@
         <td class="tool-actions">
           <div class="d-flex">
             <% unless booking.status == "rejected" || booking.start_date <= Time.now %>
-          <%= link_to "Modifier", '#', class: "btn-blue" %>
-          <%= link_to "Annuler", reject_booking_path(booking), method: "patch", data: { confirm: 'Are you sure?' }, class: "btn-red" %>
+          <%= link_to "Modifier", '#', class: "btn-blue reserv_btn" %>
+          <%= link_to "Annuler", reject_booking_path(booking), method: "patch", data: { confirm: 'Are you sure?' }, class: "btn-red reserv_btn" %>
           <% end %>
           </div>
         </td>

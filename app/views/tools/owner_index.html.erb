@@ -1,4 +1,7 @@
 <div class="container">
+  <div class="container form_console from_reserv from_my_tools">
+    <h3 class="text-center">Mes outils</h3>
+  </div>
   <div class="cards-grid">
     <% @tools.each do |tool| %>
     <div class="tool_card">
@@ -16,8 +19,8 @@
       </div>
       <div class="grid">
       <div class="tool_card_action">
-        <%= link_to "Détails", tool_path(tool), class: "btn-red" %>
-        <%= link_to "Modifier", edit_tool_path(tool), class: "btn-red" %>
+        <%= link_to "Détails", tool_path(tool), class: "btn-blue outils_btn" %>
+        <%= link_to "Modifier", edit_tool_path(tool), class: "btn-blue outils_btn" %>
       </div>
       </div>
     </div>
