@@ -1,29 +1,34 @@
-<div class="container p-3 text-center" style="background-color: white">
+<div class="container text-center">
   <table>
     <thead>
-      <th class="tool-name">Tool name</th>
-      <th class="tool-from">From</th>
-      <th class="tool-to">To</th>
-      <th class="tool-status">Status</th>
+      <th class="tool-name">Outil</th>
+      <th class="tool-owner">Emprunteur</th>
+      <th class="tool-from">De</th>
+      <th class="tool-to">Jusqu'à</th>
+      <th class="tool-status">Statut</th>
       <th class="tool-actions">Actions</th>
     </thead>
     <tbody>
     <% @bookings_as_owner.each do |booking| %>
       <tr>
-        <td class="tool-name">
-          <%= link_to "#{booking.tool.name}", tool_path(booking.tool) %>
-        </td>
+        <td class="tool-name"><%= link_to "#{booking.tool.name}", tool_path(booking.tool) %></td>
+        <td class="tool-owner"><%= booking.renter.username %></td>
         <td class="tool-from"><%= booking.start_date.strftime("%d/%m/%Y") %></td>
         <td class="tool-to"><%= booking.end_date.strftime("%d/%m/%Y") %></td>
-        <td class="tool-status"><%= booking.status %></td>
+        <% if booking.status == "approved" %>
+          <td class="tool-status">Validé</td>
+        <% else %>
+          <td class="tool-status">En attente</td>
+        <% end %>
+
         <td class="tool-actions">
           <div class="d-flex">
-            <% if booking.status == "rejected" %>
+            <% if booking.start_date <= Time.now %>
             <% elsif booking.status == "approved" %>
-              <%= link_to "Cancel", reject_booking_path(booking), method: "patch", data: { confirm: 'Are you sure?' }, class: "btn btn-warning w-50" %>
+              <%= link_to "Annuler", reject_booking_path(booking), method: "patch", data: { confirm: 'Êtes vous sûr?' }, class: "btn-red" %>
             <% elsif booking.status == "pending" %>
-              <%= link_to "Accept", approve_booking_path(booking), method: "patch", class: "btn btn-success w-100" %>
-              <%= link_to "Refuse", reject_booking_path(booking), method: "patch", data: { confirm: 'Are you sure?' }, class: "btn btn-primary w-100" %>
+              <%= link_to "Accepter", approve_booking_path(booking), method: "patch", class: "btn-blue" %>
+              <%= link_to "Refuser", reject_booking_path(booking), method: "patch", data: { confirm: 'Êtes vous sûr?' }, class: "btn-red" %>
             <% end %>
           </div>
         </td>

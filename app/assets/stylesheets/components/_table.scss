@@ -1,16 +1,16 @@
 table {
-  border: 1px solid black;
+  border: none;
   width: 100%;
   border-collapse: collapse;
   border-spacing: 16px;
   thead {
-    border: 1px solid black;
+    border: 1px solid #0f4471;
     th {
       height: 3em;
     }
   }
   tr {
-    border: 1px solid black;
+    border: none;
   }
 }
 

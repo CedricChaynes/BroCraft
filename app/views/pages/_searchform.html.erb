@@ -11,10 +11,10 @@
   <div class="form-inline">
     <div class="d-flex justify-content-between" style="margin-left: 16px; margin-right: 15px;">
       <div>
-        <%= f.input :start_date, label: 'De', as: :date, html5: true %>
+        <%= f.input :start_date, label: 'De', as: :date, html5: true, input_html: {min: Date.today } %>
       </div>
       <div class="ml-3">
-        <%= f.input :end_date, label: 'À', as: :date, html5: true %>
+        <%= f.input :end_date, label: 'À', as: :date, html5: true, input_html: {min: Date.today }  %>
       </div>
     </div>
   </div>
