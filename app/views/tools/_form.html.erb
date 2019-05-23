@@ -1,5 +1,4 @@
-<h3 class="text-center p-3">Ajouter un outil</h3>
-<div class="p-3">
+<div class="p-3" >
   <%= simple_form_for(@tool) do |f| %>
     <%= f.error_notification %>
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
@@ -16,7 +15,7 @@
     </div>
 
     <div class="form-actions text-right">
-      <%= f.button :submit, 'Ajouter', class: 'btn-red' %>
+      <%= f.button :submit, 'Soumettre', class: 'btn-red' %>
     </div>
   <% end %>
 </div>
