@@ -1,17 +1,18 @@
-<h1 class="text-center p-3">Change your password</h1>
+
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-<div class="container border p-3 search_console form_no_margin" style="width: 400px">
+<div class="container form_console form_search_homepage" style="width: 500px">
   <%= f.error_notification %>
+  <h3 class="text-center p-3">Changer le mot de passe</h3>
   <div class="form-inputs">
 
     <%= f.input :password,
                 hint: "laissez vide si vous ne voulez pas changer",
-                required: false,
+                required: false, label: "Nouveau mot de passe",
                 input_html: { autocomplete: "new-password" } %>
     <%= f.input :password_confirmation,
                 hint: "Laissez vide si vous ne voulez pas changer",
-                required: false,
+                required: false, label: "Confirmer le mot de passe",
                 input_html: { autocomplete: "new-password" } %>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -20,12 +21,12 @@
 
     <%= f.input :current_password,
                 hint: "vous devez rentrer votre mot de passe actuel pour effectuer les modifications",
-                required: true,
+                required: true, label: "Mot de passe actuel",
                 input_html: { autocomplete: "current-password" } %>
   </div>
 
   <div class="form-actions text-right">
-    <%= f.button :submit, "Update", class: "btn-primary" %>
+    <%= f.button :submit, "Modifier", class: "btn-red" %>
   </div>
   <div>
     <%= link_to "Retour", :back %>
