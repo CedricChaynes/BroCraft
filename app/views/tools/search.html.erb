@@ -28,8 +28,17 @@
       <div class="tool_card_action">
         <%= link_to "Plus d'infos", tool_path(tool), class: "btn-red" %>
       </div>
+
+      <div id=<%= "map#{tool.id}" %> style="width: 40%; height: 100px; margin-right: 10px;"
+        data-markers="<%= @markers.to_json %>"
+        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+     </div>
+
+
     </div>
       <% end %>
   </div>
 </div>
+
+
 
