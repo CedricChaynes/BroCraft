@@ -50,8 +50,8 @@ ActiveRecord::Schema.define(version: 2019_05_23_045816) do
     t.datetime "updated_at", null: false
     t.string "username"
     t.string "mobile"
-    t.text "address"
     t.string "avatar"
+    t.text "address"
     t.float "latitude"
     t.float "longitude"
     t.boolean "admin", default: false
