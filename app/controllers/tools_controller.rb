@@ -3,7 +3,6 @@ class ToolsController < ApplicationController
   before_action :set_tool, only: %i[show edit update destroy]
   before_action :skip_authorization, only: %i[search filter create new]
 
-
   def owner_index
     @tools = policy_scope(Tool).where(owner_id: current_user.id).order(name: :asc)
   end
