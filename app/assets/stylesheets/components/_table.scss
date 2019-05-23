@@ -10,7 +10,15 @@ table {
     }
   }
   tr {
-    border: none;
+
+  }
+  tr.reserv_card{
+    height: 64px;
+    border-bottom: 1px solid #E6E6E6;
+    transition: .3s
+  }
+  tr.reserv_card:hover{
+    background-color: #E6E6E6;
   }
 }
 
