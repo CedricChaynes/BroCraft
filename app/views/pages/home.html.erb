@@ -1,14 +1,38 @@
-<div class="container" style="width: 800px">
-<div class="d-flex bd-highlight mb-3 align-items-center">
-  <div class="p-2 bd-highlight claim">Louez et empruntez </div>
-  <div class="p-2 bd-highlight claim changing"></div>
-  <div class="ml-auto p-2 bd-highlight claim"> à des particuliers près de chez vous</div>
-</div>
 
-<div class="container form_console form_search_homepage" style="width: 800px">
+<div class="d-flex bd-highlight align-self-start justify-content-center", style="font-family: Skranji; font-size: 26px">
+  <div class="p-2 bd-highlight claim"> Louez et empruntez</div>
+  <div class="p-2 bd-highlight claim changing"></div>
+</div>
+<div class="d-flex ml-auto p-2 bd-highlight claim justify-content-center", style="font-family: Skranji; font-size: 26px">à des particuliers près de chez vous</div>
+
+<div class="container form_console form_search_homepage" style="width: 500px">
+  <h3 class="text-center p-3" style="margin-top: 24px">Chercher un outil</h3>
   <br>
 
-  <%= render 'searchform' %>
-</div>
+<%= simple_form_for :searchform, url: search_tools_path, method: "GET" do |f| %>
+  <div class="d-flex justify-content-around">
+    <%= f.input :name, label: false, input_html: {value: "", placeholder: 'Outil', size: 21} %>
+    <%= f.input :category, label: false, as: :select2, collection: Tool.pluck(:category).uniq %>
+        <script>document.querySelectorAll('#searchform_category option')[0].innerText = 'Catégorie'</script>
+  </div>
+  <br>
+  <div style="margin: 0 20px;">
+    <span style="display: block;overflow: hidden;"><%= f.input :address, label: false, input_html: {placeholder: 'Ville'} %></span>
+  </div>
+  <div class="form-inline">
+    <div class="d-flex justify-content-between" style="margin-left: 16px; margin-right: 15px;">
+      <div>
+        <%= f.input :start_date, label: 'De', as: :date, html5: true, input_html: {min: Date.today } %>
+      </div>
+      <div class="ml-3">
+        <%= f.input :end_date, label: 'À', as: :date, html5: true, input_html: {min: Date.today }  %>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="text-center">
+    <%= f.button :submit, 'Go!', class: "btn-red" %>
+    <% end %>
+  </div>
 
-</div>
+
