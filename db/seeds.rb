@@ -3,6 +3,12 @@ require 'json'
 require 'nokogiri'
 require 'faker'
 
+Booking.destroy_all
+Tool.destroy_all
+User.destroy_all
+
+
+
 =begin
 queries = %w[hand-tools automotive-tools home-and-garden air-tools power-tools metal-working-tools]
 baseurl = 'https://www.toolplanet.com/category/'
@@ -42,7 +48,7 @@ count = 1
 while count < 10
   user = User.create!(username: "user#{count}", email: "user#{count}@gmail.com",
          password: '123456', mobile: generate_French_mobile_number,
-         address: Faker::Address.full_address, avatar_url: generate_image_url)
+         address: 'Lyon',remote_avatar_url: generate_image_url)
   rand(1..5).times do
     tool = Tool.new(name: Faker::ElectricalComponents.electromechanical,
               description: Faker::Lorem.paragraph_by_chars(256, false),
