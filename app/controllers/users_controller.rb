@@ -6,11 +6,12 @@ class UsersController < ApplicationController
 
   def update
     current_user.update!(user_params)
+    redirect_back(fallback_location: my_profile_path)
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:username, :mobile, :address)
+    params.require(:user).permit(:username, :mobile, :address, :avatar)
   end
 end
