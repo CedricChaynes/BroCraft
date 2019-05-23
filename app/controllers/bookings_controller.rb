@@ -8,8 +8,8 @@ class BookingsController < ApplicationController
   end
 
   def index
-    @bookings_as_owner = current_user.owned_bookings
-    @bookings_as_renter = policy_scope(Booking).where(renter_id: current_user.id).order(status: :asc)
+    @bookings_as_owner = current_user.owned_bookings.where.not(status: "rejected").order("status DESC, start_date ASC")
+    @bookings_as_renter = policy_scope(Booking).where(renter_id: current_user.id).where.not(status: "rejected").order("status DESC, start_date ASC")
   end
 
   def show
