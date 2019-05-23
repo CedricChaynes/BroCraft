@@ -1,7 +1,7 @@
 class Tool < ApplicationRecord
-  CATEGORIES = ['outillage à main', 'outillage électroportatif',
-                'outillage spécialisé', 'protection', 'équipement de chantier',
-                "machine d'atelier"]
+  CATEGORIES = ['Outillage à main', 'Outillage électroportatif',
+                  'Outillage spécialisé', 'Protection', 'Équipement de chantier',
+                  "Machine d'atelier"]
 
   belongs_to :owner, class_name: "User", foreign_key: "owner_id"
   has_many :bookings, dependent: :destroy

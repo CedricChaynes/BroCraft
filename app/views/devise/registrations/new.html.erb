@@ -1,7 +1,7 @@
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-<div class="container form_console form_sign" style="width: 560px">
-  <h2 class="text-center p-3">Sign up</h2>
-  <div class="form-inputs border p-3">
+<div class="container form_console" style="width: 560px">
+  <h3 class="text-center p-3">Inscription</h3>
+  <div class="form-inputs p-3">
     <%= f.error_notification %>
     <div class="d-flex justify-content-between">
       <div>
@@ -43,7 +43,7 @@
 
 
     <div class="form-actions text-right">
-      <%= f.button :submit, "Sign up", class: 'btn-primary' %>
+      <%= f.button :submit, "S'inscrire", class: 'btn-red' %>
     </div>
     <% end %>
   </div>
