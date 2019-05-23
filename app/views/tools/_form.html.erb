@@ -1,19 +1,22 @@
-<%= simple_form_for(@tool) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+<h3 class="text-center p-3">Ajouter un outil</h3>
+<div class="p-3">
+  <%= simple_form_for(@tool) do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :description %>
-    <%= f.input :price_per_day %>
-    <%= f.input :category, collection: ['outillage à main', 'outillage électroportatif',
-                'outillage spécialisé', 'protection', 'équipement de chantier',
-                "machine d'atelier"]%>
-    <%= f.input :photo %>
-    <%= f.input :photo_cache, as: :hidden %>
-  </div>
+    <div class="form-inputs">
+      <%= f.input :name, label: "Nom de l'outil" %>
+      <%= f.input :description, label: "Description" %>
+      <%= f.input :price_per_day, label: "Prix par jour", input_html: { min: 0, max: 1000 } %>
+      <%= f.input :category, collection: ['Outillage à main', 'Outillage électroportatif',
+                  'Outillage spécialisé', 'Protection', 'Équipement de chantier',
+                  "Machine d'atelier"], label: "Catégorie" %>
+      <%= f.input :photo, label: "Ajouter une photo" %>
+      <%= f.input :photo_cache, as: :hidden %>
+    </div>
 
-  <div class="form-actions text-right">
-    <%= f.button :submit, 'Submit', class: 'btn-primary' %>
-  </div>
-<% end %>
+    <div class="form-actions text-right">
+      <%= f.button :submit, 'Ajouter', class: 'btn-red' %>
+    </div>
+  <% end %>
+</div>

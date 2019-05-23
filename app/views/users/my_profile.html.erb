@@ -1,7 +1,7 @@
-<div class="container search_console">
-  <h1 class="text-center">Mon profil</h1>
+<div class="container form_console form_my_profile">
+  <h3 class="text-center p-3" style="margin-top: 24px">Mon Profil</h3>
   <div class="d-flex">
-    <div class="container">
+    <div class="p-3">
       <%= cl_image_tag current_user.avatar.url, width: 400, height: 400, crop: :crop, gravity: :face %>
     </div>
     <div class="container">
@@ -10,25 +10,26 @@
 
         <div class="form-inputs">
           <%= f.input :username,
-                      required: true,
-                      input_html: { autocomplete: "Choisissez votre username" }%>
+                      required: true, label: "Identifiant",
+                      input_html: { autocomplete: "Choose a username" }%>
           <%= f.input :mobile,
-                      required: false,
-                      input_html: { autocomplete: "Téléphone Mobile" }%>
+                      required: false, label: "Téléphone",
+                      input_html: { autocomplete: "Mobile Phone" }%>
           <%= f.input :address,
-                      required: true,
-                      input_html: { autocomplete: "Adresse" }%>
+                      required: true, label: "Adresse",
+                      input_html: { autocomplete: "Address" }%>
           <%= f.input :avatar %>
           <%= f.input :avatar_cache, as: :hidden %>
         </div>
 
         <div class="form-actions text-right">
-          <%= f.button :submit, "Mettre à jour", class:"btn-red" %>
+          <%= f.button :submit, "Modifier", class:"btn-red" %>
         </div>
       <% end %>
 
-            <%= link_to "Modifier mot de passe", edit_user_registration_path, class: "btn-blue" %>
-            <%= link_to "Retour", root_path, class: "btn-blue" %>
+      <%= link_to "Modifier mot de passe", edit_user_registration_path %>
+      </br>
+      <%= link_to "Retour", root_path %>
     </div>
   </div>
 </div>
