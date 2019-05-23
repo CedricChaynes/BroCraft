@@ -3,7 +3,6 @@ require 'json'
 require 'nokogiri'
 require 'faker'
 
-
 Booking.destroy_all
 Tool.destroy_all
 User.destroy_all
@@ -40,12 +39,11 @@ CATEGORIES = ['outillage à main', 'outillage électroportatif',
               'outillage spécialisé', 'protection', 'équipement de chantier',
               "machine d'atelier"]
 
-count = 1
 user = User.create!(username: "sirtaylor88", email: "nhattai.nguyen88@gmail.com",
          password: '123456', mobile: generate_French_mobile_number,
          address: Faker::Address.full_address, remote_avatar_url: generate_image_url)
-20.times do
-  tool = Tool.new(name: Faker::ElectricalComponents.electromechanical,
+10.times do
+  tool = Tool.new(name: "#{Faker::ElectricalComponents.electromechanical + rand(100)}"),
             description: Faker::Lorem.paragraph_by_chars(256, false),
             category: CATEGORIES.sample, price_per_day: generate_price,
             remote_photo_url: img_url_list.sample)
@@ -53,13 +51,14 @@ user = User.create!(username: "sirtaylor88", email: "nhattai.nguyen88@gmail.com"
   tool.save!
 end
 
+count = 1
 while count < 4
   user = User.create!(username: "user#{count}", email: "user#{count}@gmail.com",
          password: '123456', mobile: generate_French_mobile_number,
          address: 'Lyon',remote_avatar_url: generate_image_url)
 
   rand(1..5).times do
-    tool = Tool.new(name: Faker::ElectricalComponents.electromechanical,
+    tool = Tool.new(name: "#{Faker::ElectricalComponents.electromechanical + rand(100)}",
               description: Faker::Lorem.paragraph_by_chars(256, false),
               category: CATEGORIES.sample, price_per_day: generate_price,
               remote_photo_url: img_url_list.sample)

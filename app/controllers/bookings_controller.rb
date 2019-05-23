@@ -22,7 +22,6 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.renter = current_user
     @booking.tool = Tool.find(params[:tool_id])
-
     @booking.save!
 
     redirect_to bookings_path

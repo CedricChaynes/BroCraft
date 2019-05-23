@@ -6,25 +6,28 @@ const fitMapToMarkers = (map, markers) => {
   map.fitBounds(bounds, { padding: 70, maxZoom: 15 });
 };
 
-
 const initMapbox = () => {
-  const mapElement = document.querySelector('[id^="#map"]');
+  const mapElements = document.querySelectorAll("[id^='map']");
+  if (mapElements) { // only build a map if there's a div#map to inject into
+    mapElements.forEach((mapElement) => {
+      const markers = JSON.parse(mapElement.dataset.markers);
 
-  if (mapElement) { // only build a map if there's a div#map to inject into
-    mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
-    const map = new mapboxgl.Map({
-      container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v10'
-    });
+      mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
+      const map = new mapboxgl.Map({
+        container: `map${mapElement.dataset.toolId}`,
+        style: 'mapbox://styles/mapbox/streets-v10',
+        center: markers[0],
+        zoom: 15
+      });
 
-    const markers = JSON.parse(mapElement.dataset.markers);
-    markers.forEach((marker) => {
-      new mapboxgl.Marker()
-        .setLngLat([ marker.lng, marker.lat ])
-        .addTo(map);
-    });
+      markers.forEach((marker) => {
+        new mapboxgl.Marker()
+          .setLngLat([ marker.lng, marker.lat ])
+          .addTo(map);
+      });
 
-    fitMapToMarkers(map, markers);
+      fitMapToMarkers(map, markers);
+    })
   };
 };
 
