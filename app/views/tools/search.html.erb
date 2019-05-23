@@ -5,7 +5,7 @@
 
 <div class="container">
   <% if @search.present? %>
-  <p>Vous avez cherché l'outil <strong><%= @name %></strong>. Nous en avons trouvé <%= @tools.size %> parmi les <%= Tool.count %> disponible sur le site:</p>
+  <p style="color: #f6f6f6">Vous avez cherché l'outil <strong><%= @name %></strong>. Nous en avons trouvé <%= @tools.size %> parmi les <%= Tool.count %> disponible sur le site:</p>
   <% end %>
 </div>
 

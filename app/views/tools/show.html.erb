@@ -1,21 +1,21 @@
 <div class="container">
   <div class="row text-justify">
-    <div class="col-5 border m-3 p-3" style="background-color:white">
+    <div class="col-5 container form_console form_my_profile">
       <div class="d-flex">
-        <div class="container text-center">
+        <div class="container text-center" style="margin-top: 20px">
           <h1><%= @tool.name %></h1>
-          <img style="width: 50vh" src=<%="#{@tool.photo}"%>>
+          <img class="img_show_tool" src=<%="#{@tool.photo}"%>>
         </div>
       </div>
     </div>
 
-    <div class="col-6 border m-3 p-3 text-left" style="background-color:white">
-      <div class="container border text-justify mb-3 p-3">
+    <div class="col-6 container form_console form_my_profile">
+      <div class="container text-justify mb-3 p-3">
         <h3>Description</h3>
         <p><%= @tool.description %></p>
       </div>
       <div class="container text-justify mb-3">
-        <h4><%= '%.2f' % @tool.price_per_day %> € / day</h4>
+        <h4 style="color: #fc3c3c"><%= '%.2f' % @tool.price_per_day %> € / jour</h4>
       </div>
 
       <% if @tool.owner == @user %>
@@ -24,11 +24,11 @@
         <%= simple_form_for [@tool, @booking] do |f| %>
           <%= f.error_notification %>
           <div class="form-inputs">
-            <%= f.input :start_date, as: :date, html5: true, input_html: {min: Date.today } %>
-            <%= f.input :end_date, as: :date, html5: true, input_html: {min: Date.today } %>
+            <%= f.input :start_date, label: "Date de début", as: :date, html5: true, input_html: {min: Date.today } %>
+            <%= f.input :end_date, label: "Date de fin", as: :date, html5: true, input_html: {min: Date.today } %>
           </div>
 
-          <div class="form-actions">
+          <div class="form-actions center_bc_btn">
             <%= f.button :submit, 'Book' ,class: 'btn-red' %>
           </div>
          <% end %>
