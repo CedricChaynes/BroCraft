@@ -10,6 +10,10 @@ class PhotoUploader < CarrierWave::Uploader::Base
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
+  def public_id
+    "seedata/#{Cloudinary::Utils.random_public_id}"
+  end
+
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
@@ -18,6 +22,9 @@ class PhotoUploader < CarrierWave::Uploader::Base
     "https://res.cloudinary.com/dl8rau6sl/image/upload/v1558533108/default_ml5awm.png"
   end
 
+  #def non_existing_id
+  #https://res.cloudinary.com/dl8rau6sl/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_red,b_rgb:262c35/v1558604492/non_existing_id_lgri9l.png
+  #end
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
   #   # For Rails 3.1+ asset pipeline compatibility:

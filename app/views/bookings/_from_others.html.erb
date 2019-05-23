@@ -1,4 +1,4 @@
-<div class="container p-3 text-center">
+<div class="container p-3 text-center" style="background-color: white">
   <table>
     <thead>
       <th class="tool-name">Tool name</th>
@@ -10,18 +10,22 @@
     <tbody>
     <% @bookings_as_owner.each do |booking| %>
       <tr>
-        <td class="tool-name"><%= booking.tool.name %></td>
+        <td class="tool-name">
+          <%= link_to "#{booking.tool.name}", tool_path(booking.tool) %>
+        </td>
         <td class="tool-from"><%= booking.start_date.strftime("%d/%m/%Y") %></td>
         <td class="tool-to"><%= booking.end_date.strftime("%d/%m/%Y") %></td>
         <td class="tool-status"><%= booking.status %></td>
         <td class="tool-actions">
-          <% if booking.status == "rejected" %>
-          <% elsif booking.status == "approved" %>
-            <%= link_to "Cancel Booking", reject_booking_path(booking), method: "patch", data: { confirm: 'Are you sure?' }, class: "btn btn-warning w-100" %>
-          <% elsif booking.status == "pending" %>
-            <%= link_to "Accept Booking request", approve_booking_path(booking), method: "patch", class: "btn btn-success w-100" %>
-            <%= link_to "Refuse Booking request", reject_booking_path(booking), method: "patch", data: { confirm: 'Are you sure?' }, class: "btn btn-primary w-100" %>
-          <% end %>
+          <div class="d-flex">
+            <% if booking.status == "rejected" %>
+            <% elsif booking.status == "approved" %>
+              <%= link_to "Cancel", reject_booking_path(booking), method: "patch", data: { confirm: 'Are you sure?' }, class: "btn btn-warning w-50" %>
+            <% elsif booking.status == "pending" %>
+              <%= link_to "Accept", approve_booking_path(booking), method: "patch", class: "btn btn-success w-100" %>
+              <%= link_to "Refuse", reject_booking_path(booking), method: "patch", data: { confirm: 'Are you sure?' }, class: "btn btn-primary w-100" %>
+            <% end %>
+          </div>
         </td>
       </tr>
     <% end %>
