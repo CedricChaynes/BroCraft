@@ -3,7 +3,6 @@ require 'json'
 require 'nokogiri'
 require 'faker'
 
-=begin
 queries = %w[hand-tools automotive-tools home-and-garden air-tools power-tools metal-working-tools]
 baseurl = 'https://www.toolplanet.com/category/'
 img_url_list = []
@@ -15,8 +14,7 @@ queries.each do |query|
     img_url_list << elem.attribute('src').value
   end
 end
-100.times { img_url_list.shuffle! }
-=end
+
 def generate_French_mobile_number
   "#{%w[+33 (+33) 0].sample}#{rand(6..7)}#{rand.to_s[2..9]}"
 end
@@ -39,22 +37,35 @@ CATEGORIES = ['outillage à main', 'outillage électroportatif',
               "machine d'atelier"]
 
 count = 1
-while count < 10
+user = User.create!(username: "sirtaylor88", email: "nhattai.nguyen88@gmail.com",
+         password: '123456', mobile: generate_French_mobile_number,
+         address: Faker::Address.full_address, remote_avatar_url: generate_image_url)
+20.times do
+  tool = Tool.new(name: Faker::ElectricalComponents.electromechanical,
+            description: Faker::Lorem.paragraph_by_chars(256, false),
+            category: CATEGORIES.sample, price_per_day: generate_price,
+            remote_photo_url: img_url_list.sample)
+  tool.owner = user
+  tool.save!
+end
+
+while count < 4
   user = User.create!(username: "user#{count}", email: "user#{count}@gmail.com",
          password: '123456', mobile: generate_French_mobile_number,
-         address: Faker::Address.full_address, avatar_url: generate_image_url)
+         address: Faker::Address.full_address, remote_avatar_url: generate_image_url)
   rand(1..5).times do
     tool = Tool.new(name: Faker::ElectricalComponents.electromechanical,
               description: Faker::Lorem.paragraph_by_chars(256, false),
-              category: CATEGORIES.sample, price_per_day: generate_price)
+              category: CATEGORIES.sample, price_per_day: generate_price,
+              remote_photo_url: img_url_list.sample)
     tool.owner = user
     tool.save!
   end
   count += 1
 end
 
-100.times do |variable|
-  start_date = rand(Date.today..Date.civil(2050, 12, 31))
+50.times do |variable|
+  start_date = rand(Date.today..Date.civil(2020, 12, 31))
   end_date = start_date + rand(1..365)
   booking = Booking.new(status: %w[pending approved rejected].sample,
               start_date: start_date,
