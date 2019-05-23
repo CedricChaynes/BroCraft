@@ -1,4 +1,4 @@
-<div class="container p-3 text-center">
+<div class="container p-3 text-center" style="background-color: white">
   <table>
     <thead>
       <th class="tool-name">Tool name</th>
@@ -11,7 +11,9 @@
     <tbody>
     <% @bookings_as_renter.each do |booking| %>
       <tr>
-        <td class="tool-name"><%= booking.tool.name %></td>
+        <td class="tool-name">
+        <%= link_to "#{booking.tool.name}", tool_path(booking.tool) %>
+        </td>
         <td class="tool-owner"><%= booking.tool.owner.username %></td>
         <td class="tool-from"><%= booking.start_date.strftime("%d/%m/%Y") %></td>
         <td class="tool-to"><%= booking.end_date.strftime("%d/%m/%Y") %></td>
