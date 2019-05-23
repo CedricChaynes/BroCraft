@@ -2,7 +2,7 @@
   <h1 class="text-center">Mon profil</h1>
   <div class="d-flex">
     <div class="container">
-      <%= cl_image_tag current_user.avatar.url, crop: :thumb, gravity: :face %>
+      <%= cl_image_tag current_user.avatar.url, width: 400, height: 400, crop: :crop, gravity: :face %>
     </div>
     <div class="container">
       <%= simple_form_for(current_user) do |f| %>
