@@ -1,8 +1,8 @@
 <div class="container form_console form_my_profile">
-  <h3 class="text-center p-3" style="margin-top: 24px">Mon Profil</h3>
+  <h3 class="text-center p-3">Mon Profil</h3>
   <div class="d-flex">
     <div class="p-3">
-      <%= cl_image_tag current_user.avatar.url, width: 400, height: 400, crop: :crop, gravity: :face %>
+      <%= cl_image_tag current_user.avatar.url, class: "img_profile", width: 400, height: 400, crop: :crop, gravity: :face %>
     </div>
     <div class="container">
       <%= simple_form_for(current_user) do |f| %>
