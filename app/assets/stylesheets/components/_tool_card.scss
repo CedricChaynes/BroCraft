@@ -4,8 +4,8 @@
   background: #f6f6f6;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  // align-items: center;
+  // justify-content: space-between;
   border-radius: 8px;
   border: 1px solid;
   transition: transform .2s;
@@ -21,8 +21,8 @@
 }
 
 .tool_card img {
-  height: 100%;
   width: 120px;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -53,7 +53,41 @@
 }
 
 .tool_card .tool_card_action {
+  text-align: center;
+  width: 200px;
   padding: 16px;
   display: flex;
   flex-direction: column;
+}
+
+.tool_card_infos_title {
+  text-align: center;
+  width: 240px;
+}
+
+.tool_card_infos_address {
+  width: 190px;
+}
+
+.tool_card_infos_price {
+  text-align: center;
+  width: 100px;
+}
+
+.tool_card_infos_title2 {
+  text-align: center;
+  width: 300px;
+}
+
+.tool_card_infos_descr {
+  text-align: center;
+  width: 300px;
+}
+
+.tool_card_action_tools {
+  text-align: center;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
 }

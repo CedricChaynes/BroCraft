@@ -6,19 +6,19 @@
     <% @tools.each do |tool| %>
     <div class="tool_card">
       <%= cl_image_tag(tool.photo.url) %>
-      <div class="tool_card_infos">
+      <div class="tool_card_infos tool_card_infos_title2">
         <h1><%= tool.name %></h1>
         <p><%= tool.category %></p>
       </div>
-      <div class="tool_card_infos">
+      <div class="tool_card_infos tool_card_infos_descr">
         <p><%= tool.description %></p>
       </div>
-      <div class="tool_card_infos">
+      <div class="tool_card_infos tool_card_infos_price">
         <h2><%= tool.price_per_day %>€</h2>
         <p>par jour</p>
       </div>
       <div class="grid">
-      <div class="tool_card_action">
+      <div class="tool_card_action_tools">
         <%= link_to "Détails", tool_path(tool), class: "btn-blue outils_btn" %>
         <%= link_to "Modifier", edit_tool_path(tool), class: "btn-blue outils_btn" %>
       </div>

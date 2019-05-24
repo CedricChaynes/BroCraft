@@ -135,19 +135,21 @@ valerie = User.create({
 puts "Users created !"
 puts "creating new Tools.............."
 
-tools = ["scie sauteuse", "toupie d'établi", "visseuse d'angle à fil", "ponceuse à bande", "raboteuse dégauchiseusse", "meuleuse", "pince à encoche", "lime à métaux", "Fer à souder 100W", "ebauchoirs en buis", "ciseau à pierre","aiguille P47", "burin", "scie à mèches", "perceuse", "carelette manuelle", "tablier de protection", "serre joint", "défonceuse", "tournette basse"]
+tools = ["scie sauteuse", "toupie d'établi", "visseuse d'angle à fil", "ponceuse à bande", "raboteuse dégauchiseusse", "meuleuse", "pince à encoche", "lime à métaux", "Fer à souder 100W", "ebauchoirs en buis", "ciseau à pierre","aiguille P47", "burin", "scie à mèches", "perceuse", "perceuse", "perceuse", "carelette manuelle", "tablier de protection", "serre joint", "défonceuse", "tournette basse"]
 desc1 = ["parfait état", "a très peu servi", "un peu abimé sur le devant", "toujours aussi utile après des années d'utilisation", "ne m'a jamais trahi", "état convenable", "fragile, mais fonctionne bien", "j'ai construit ma maison uniquement avec cet outil", "solide et robuste, de bonne facture"]
 desc2 = ["de marque Black & Decker", "se branche sur une prise 20V minimum", "ne pas utiliser les jours de pluie", "prêté avec la notice", "acheté chez Castorama il y'a 2 semaines", "puissance 1600W", "pour lames de 550mm", "longueur 1160mm", "avec semelle en fonte", "embout caoutchouc", "avec plaque de coupe 60x45","modèle MV Dremel 510 Pro Turbo", "marque Trima 25mm UltraPower", "recommandé dans l'émission Déco", "avec douille theromstatique", "en polypropylène"]
 CATEGORIES = ['outillage à main', 'outillage électroportatif',
               'outillage spécialisé', 'protection', 'équipement de chantier',
               "machine d'atelier"]
-ADDRESSES = %w[Paris Lyon Marseille Toulouse Lille Grenoble Melun Courcouronnes Evry Cublize
-               Saint-Nazaire Ardennes Nantes Bordeaux Rennes Tours Poitiers Limoges
-              Bourges Montpellier Nice Corse Dijon Strasbourg Reims Le-Havre Poitiers]
+# ADDRESSES = %w[Paris Lyon Marseille Toulouse Lille Grenoble Melun Courcouronnes Evry Cublize
+#                Saint-Nazaire Ardennes Nantes Bordeaux Rennes Tours Poitiers Limoges
+#               Bourges Montpellier Nice Corse Dijon Strasbourg Reims Le-Havre Poitiers]
+
+
 
 user = User.create!(username: "sirtaylor88", email: "nhattai.nguyen88@gmail.com",
          password: '123456', mobile: generate_French_mobile_number,
-         address: ADDRESSES.sample, remote_avatar_url: generate_image_url)
+         address: '2 rue de la République, Lyon', remote_avatar_url: generate_image_url)
 
 img_cl_url = ["https://res.cloudinary.com/dl8rau6sl/image/upload/v1558688593/seedata/jsem4rwn7ny2yjvss4u5.jpg",
           "https://res.cloudinary.com/dl8rau6sl/image/upload/v1558688592/seedata/iasjic6kckfkzsdnvs46.jpg",
