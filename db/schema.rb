@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_23_103215) do
+ActiveRecord::Schema.define(version: 2019_05_24_111532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,8 +37,6 @@ ActiveRecord::Schema.define(version: 2019_05_23_103215) do
     t.bigint "owner_id"
     t.boolean "bookable", default: true
     t.string "photo"
-    t.float "latitude"
-    t.float "longitude"
     t.text "address"
     t.index ["owner_id"], name: "index_tools_on_owner_id"
   end
