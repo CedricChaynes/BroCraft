@@ -43,12 +43,12 @@ user = User.create!(username: "sirtaylor88", email: "nhattai.nguyen88@gmail.com"
          password: '123456', mobile: generate_French_mobile_number,
          address: Faker::Address.full_address, remote_avatar_url: generate_image_url)
 10.times do
-  tool = Tool.new(name: "#{Faker::ElectricalComponents.electromechanical + rand(100)}"),
+  tool = Tool.new(name: "#{Faker::ElectricalComponents.electromechanical}#{rand(100)}",
             description: Faker::Lorem.paragraph_by_chars(256, false),
             category: CATEGORIES.sample, price_per_day: generate_price,
             remote_photo_url: img_url_list.sample)
   tool.owner = user
-  tool.save!
+  tool.save
 end
 
 count = 1
@@ -58,12 +58,12 @@ while count < 4
          address: 'Lyon',remote_avatar_url: generate_image_url)
 
   rand(1..5).times do
-    tool = Tool.new(name: "#{Faker::ElectricalComponents.electromechanical + rand(100)}",
+    tool = Tool.new(name: "#{Faker::ElectricalComponents.electromechanical}#{rand(100)}",
               description: Faker::Lorem.paragraph_by_chars(256, false),
               category: CATEGORIES.sample, price_per_day: generate_price,
               remote_photo_url: img_url_list.sample)
     tool.owner = user
-    tool.save!
+    tool.save
   end
   count += 1
 end
@@ -76,6 +76,6 @@ end
               end_date: end_date)
   booking.renter = User.all.sample
   booking.tool = Tool.all.sample
-  booking.save!
+  booking.save
 end
 
