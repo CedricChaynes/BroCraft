@@ -19,13 +19,17 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @booking = Booking.new(booking_params)
-    @booking.renter = current_user
-    @booking.tool = Tool.find(params[:tool_id])
-    @booking.save!
+    if user_signed_in?
+      @booking = Booking.new(booking_params)
+      @booking.renter = current_user
+      @booking.tool = Tool.find(params[:tool_id])
+      @booking.save!
 
-    redirect_to bookings_path
-    authorize @booking
+      redirect_to bookings_path
+      authorize @booking
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   def approve
