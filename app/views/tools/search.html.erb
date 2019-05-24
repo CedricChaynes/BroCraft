@@ -28,8 +28,9 @@
       <div class="tool_card_action">
         <%= link_to "Plus d'infos", tool_path(tool), class: "btn-red" %>
       </div>
+        <% marker_tool = [{lat: tool.owner.latitude, lng: tool.owner.longitude}] %>
       <div id="map<%= tool.id %>"  style="width: 400px; height: 100px; margin-right: 10px;"
-        data-markers="<%= @markers.to_json %>"
+        data-markers="<%= marker_tool.to_json %>"
         data-tool-id="<%= tool.id %>"
         data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
       </div>

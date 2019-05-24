@@ -38,12 +38,15 @@ end
 CATEGORIES = ['outillage à main', 'outillage électroportatif',
               'outillage spécialisé', 'protection', 'équipement de chantier',
               "machine d'atelier"]
+ADDRESSES = %w[Paris Lyon Marseille Toulouse Lille Grenoble Melun Courcouronnes Evry Cublize
+               Saint-Nazaire Ardennes Nantes Bordeaux Rennes Tours Poitiers Limoges
+              Bourges Montpellier Nice Corse Dijon Strasbourg Reims Le-Havre Poitiers]
 
 user = User.create!(username: "sirtaylor88", email: "nhattai.nguyen88@gmail.com",
          password: '123456', mobile: generate_French_mobile_number,
-         address: Faker::Address.full_address, remote_avatar_url: generate_image_url)
-10.times do
-  tool = Tool.new(name: "#{Faker::ElectricalComponents.electromechanical + rand(100)}"),
+         address: ADDRESSES.sample, remote_avatar_url: generate_image_url)
+3.times do
+  tool = Tool.new(name: "#{Faker::ElectricalComponents.electromechanical}#{rand(100)}",
             description: Faker::Lorem.paragraph_by_chars(256, false),
             category: CATEGORIES.sample, price_per_day: generate_price,
             remote_photo_url: img_url_list.sample)
@@ -52,13 +55,13 @@ user = User.create!(username: "sirtaylor88", email: "nhattai.nguyen88@gmail.com"
 end
 
 count = 1
-while count < 4
-  user = User.create!(username: "user#{count}", email: "user#{count}@gmail.com",
+while count < 3
+  user = User.create!(username: Faker::Name.unique.name, email: "user#{count}@gmail.com",
          password: '123456', mobile: generate_French_mobile_number,
-         address: 'Lyon',remote_avatar_url: generate_image_url)
+         address: ADDRESSES.sample,remote_avatar_url: generate_image_url)
 
-  rand(1..5).times do
-    tool = Tool.new(name: "#{Faker::ElectricalComponents.electromechanical + rand(100)}",
+  rand(2..3).times do
+    tool = Tool.new(name: "#{Faker::ElectricalComponents.electromechanical}#{rand(100)}",
               description: Faker::Lorem.paragraph_by_chars(256, false),
               category: CATEGORIES.sample, price_per_day: generate_price,
               remote_photo_url: img_url_list.sample)
@@ -68,7 +71,7 @@ while count < 4
   count += 1
 end
 
-50.times do |variable|
+20.times do |variable|
   start_date = rand(Date.today..Date.civil(2020, 12, 31))
   end_date = start_date + rand(1..365)
   booking = Booking.new(status: %w[pending approved rejected].sample,
