@@ -14,22 +14,22 @@
     <% @tools.each do |tool| %>
     <div class="tool_card">
       <%= cl_image_tag(tool.photo.url) %>
-      <div class="tool_card_infos">
+      <div class="tool_card_infos tool_card_infos_title">
         <h1><%= tool.name %></h1>
         <p><%= tool.category %></p>
       </div>
-      <div class="tool_card_infos">
+      <div class="tool_card_infos tool_card_infos_address" style="display: flex; align-items: center;">
         <p><%= tool.owner.address %></p>
       </div>
-      <div class="tool_card_infos">
-        <h2><%= tool.price_per_day %>€</h2>
+      <div class="tool_card_infos tool_card_infos_price" style="display: flex; align-items: center;">
+        <h2 style="display: flex; align-items: center;"><%= tool.price_per_day %>€</h2>
         <p>par jour</p>
       </div>
-      <div class="tool_card_action">
+      <div class="tool_card_action" style="display: flex; align-items: center;">
         <%= link_to "Plus d'infos", tool_path(tool), class: "btn-red" %>
       </div>
         <% marker_tool = [{lat: tool.owner.latitude, lng: tool.owner.longitude}] %>
-      <div id="map<%= tool.id %>"  style="width: 400px; height: 100px; margin-right: 10px;"
+      <div id="map<%= tool.id %>"  style="width: 270px; height: 120px;"
         data-markers="<%= marker_tool.to_json %>"
         data-tool-id="<%= tool.id %>"
         data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
