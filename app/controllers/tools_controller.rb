@@ -48,15 +48,6 @@ class ToolsController < ApplicationController
     @category = @search[:category]
     search_params = { name: @name, category: @category }
     @tools = Tool.search(search_params)
-
-    @users = User.where.not(latitude: nil, longitude: nil)
-
-    @markers = @users.map do |user|
-      {
-        lat: user.latitude,
-        lng: user.longitude
-      }
-    end
   end
 
   def filter

@@ -1,3 +1,75 @@
+require 'open-uri'
+require 'json'
+require 'nokogiri'
+require 'faker'
+
+=begin
+Booking.destroy_all
+Tool.destroy_all
+User.destroy_all
+
+queries = %w[hand-tools automotive-tools home-and-garden air-tools power-tools metal-working-tools]
+baseurl = 'https://www.toolplanet.com/category/'
+img_url_list = []
+queries.each do |query|
+  url = "#{baseurl}#{query}"
+  response = open(baseurl).read
+  doc = Nokogiri::HTML(response)
+  doc.search('.image a img').each do |elem|
+    img_url_list << elem.attribute('src').value
+  end
+end
+3.times do
+  tool = Tool.new(name: "#{Faker::ElectricalComponents.electromechanical}#{rand(100)}",
+            description: Faker::Lorem.paragraph_by_chars(256, false),
+            category: CATEGORIES.sample, price_per_day: generate_price,
+            remote_photo_url: img_url_list.sample)
+  tool.owner = user
+  tool.save!
+end
+
+count = 1
+while count < 3
+  user = User.create!(username: Faker::Name.unique.name, email: "user#{count}@gmail.com",
+         password: '123456', mobile: generate_French_mobile_number,
+         address: ADDRESSES.sample,remote_avatar_url: generate_image_url)
+
+  rand(2..3).times do
+    tool = Tool.new(name: "#{Faker::ElectricalComponents.electromechanical}#{rand(100)}",
+              description: Faker::Lorem.paragraph_by_chars(256, false),
+              category: CATEGORIES.sample, price_per_day: generate_price,
+              remote_photo_url: img_url_list.sample)
+    tool.owner = user
+    tool.save!
+  end
+  count += 1
+end
+
+20.times do |variable|
+  start_date = rand(Date.today..Date.civil(2020, 12, 31))
+  end_date = start_date + rand(1..365)
+  booking = Booking.new(status: %w[pending approved rejected].sample,
+              start_date: start_date,
+              end_date: end_date)
+=end
+
+def generate_French_mobile_number
+  "#{%w[+33 (+33) 0].sample}#{rand(6..7)}#{rand.to_s[2..9]}"
+end
+
+def generate_image_url
+  size = [*200..400].sample
+  Faker::LoremPixel.image("#{size}x#{size}")
+end
+
+def generate_price
+  rand(1.0..100.0).round(2)
+end
+
+def generate_date
+  rand(Date.today..Date.civil(2019, 12, 31))
+end
+
 puts "Destroying previous data........."
 
 Booking.destroy_all
@@ -69,6 +141,14 @@ desc2 = ["de marque Black & Decker", "se branche sur une prise 20V minimum", "ne
 CATEGORIES = ['outillage à main', 'outillage électroportatif',
               'outillage spécialisé', 'protection', 'équipement de chantier',
               "machine d'atelier"]
+ADDRESSES = %w[Paris Lyon Marseille Toulouse Lille Grenoble Melun Courcouronnes Evry Cublize
+               Saint-Nazaire Ardennes Nantes Bordeaux Rennes Tours Poitiers Limoges
+              Bourges Montpellier Nice Corse Dijon Strasbourg Reims Le-Havre Poitiers]
+
+user = User.create!(username: "sirtaylor88", email: "nhattai.nguyen88@gmail.com",
+         password: '123456', mobile: generate_French_mobile_number,
+         address: ADDRESSES.sample, remote_avatar_url: generate_image_url)
+
 img_cl_url = ["https://res.cloudinary.com/dl8rau6sl/image/upload/v1558688593/seedata/jsem4rwn7ny2yjvss4u5.jpg",
           "https://res.cloudinary.com/dl8rau6sl/image/upload/v1558688592/seedata/iasjic6kckfkzsdnvs46.jpg",
           "https://res.cloudinary.com/dl8rau6sl/image/upload/v1558688593/seedata/g6bsual8wvlgoufoeoej.jpg",
@@ -98,6 +178,7 @@ puts "Creating new bookings.........."
   booking = Booking.new(status: %w[pending approved].sample,
               start_date: Date.tomorrow,
               end_date: 2.days.from_now)
+
   booking.renter = User.all.sample
   booking.tool = Tool.all.sample
   booking.save!

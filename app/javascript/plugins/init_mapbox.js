@@ -17,7 +17,7 @@ const initMapbox = () => {
         container: `map${mapElement.dataset.toolId}`,
         style: 'mapbox://styles/mapbox/streets-v10',
         center: markers[0],
-        zoom: 15
+        zoom: 12
       });
 
       markers.forEach((marker) => {
