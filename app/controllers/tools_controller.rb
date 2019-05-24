@@ -46,6 +46,8 @@ class ToolsController < ApplicationController
     @search = params[:searchform]
     @name = @search[:name]
     @category = @search[:category]
+    @start_date = @search[:start_date]
+    @end_date = @search[:end_date]
     search_params = { name: @name, category: @category }
     @tools = Tool.search(search_params)
   end
