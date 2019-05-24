@@ -13,5 +13,8 @@ body {
 .typewrite_text {
   font-family: Skranji;
   font-size: 26px;
-  margin-left: 370px;
+  white-space: nowrap;
+  width: 500px;
+  margin: auto;
+  padding: 0;
 }
