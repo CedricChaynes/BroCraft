@@ -39,3 +39,30 @@
   margin-top: 0px;
 }
 
+.brocraft_name {
+  font-size: 48px;
+  margin-bottom: -15px;
+  color: #f6f6f6;
+}
+
+
+:root {
+  --mainColor: #fc3c3c;
+}
+
+.brocraft_name {
+  background:
+     linear-gradient(
+       to bottom, var(--mainColor) 0%,
+       var(--mainColor) 100%
+     );
+    background-position: 0 80%;
+    background-repeat: repeat-x;
+    background-size: 4px 4px;
+  text-decoration: none;
+  transition: background-size .4s;
+}
+
+.brocraft_name:hover {
+  background-size: 4px 56px;
+}
