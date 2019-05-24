@@ -183,6 +183,9 @@ puts "Creating new bookings.........."
   booking.tool = Tool.all.sample
   booking.save!
   booking.update_columns(start_date: start_date, end_date: end_date)
+  if booking.start_date <= Date.today
+    booking.update_columns(status: "approved")
+  end
 end
 
 puts "Bookings created !"
