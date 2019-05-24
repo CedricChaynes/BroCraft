@@ -6,7 +6,7 @@
     <div class="form-inputs">
       <%= f.input :name, label: "Nom de l'outil" %>
       <%= f.input :description, label: "Description" %>
-      <%= f.input :price_per_day, label: "Prix par jour", input_html: { min: 0, max: 1000 } %>
+      <%= f.input :price_per_day, label: "Prix par jour", input_html: { min: 0 } %>
       <%= f.input :category, collection: ['Outillage à main', 'Outillage électroportatif',
                   'Outillage spécialisé', 'Protection', 'Équipement de chantier',
                   "Machine d'atelier"], label: "Catégorie" %>
